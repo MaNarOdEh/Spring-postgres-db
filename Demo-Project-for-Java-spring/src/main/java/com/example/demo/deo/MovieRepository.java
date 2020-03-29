@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.UUID;
 
 import com.example.demo.model.Movie;
-import com.example.demo.model.User;
+import com.example.demo.model.Person;
 
 import org.springframework.data.repository.CrudRepository;
 
 public interface MovieRepository extends CrudRepository<Movie, UUID> {
-    List<Movie> findByUserId(UUID userId);
+    List<Movie> findByPersonId(UUID userId);
 
-    List<Movie> findByUser(User user);
+    List<Movie> findByPerson(Person user);
 
-    void deleteByUserIdAndMovieId(UUID userId, String movieId);
+    void deleteByPersonIdAndMovieId(UUID userId, String movieId);
 }

@@ -2,9 +2,9 @@ package com.example.demo.deo;
 
 import java.util.UUID;
 
-import com.example.demo.model.User;
+import com.example.demo.model.Person;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<User, UUID> {
+public interface PersonRepository extends CrudRepository<Person, UUID> {
 }

@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.example.demo.deo.UserDeo;
-import com.example.demo.model.User;
+import com.example.demo.model.Person;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,11 +21,11 @@ public class UserServices {
         this.userDeo = userDeo;
     }
 
-    public int addUser(User user) {
+    public int addUser(Person user) {
         return userDeo.insertUser(user);
     }
 
-    public List<User> selectAllUsers() {
+    public List<Person> selectAllUsers() {
         return userDeo.selectAllUsers();
     }
 
@@ -33,11 +33,11 @@ public class UserServices {
         return userDeo.deleteUser(id);
     }
 
-    public Optional<User> getUserById(UUID id) {
+    public Optional<Person> getUserById(UUID id) {
         return userDeo.selectUserById(id);
     }
 
-    public int updateUserById(UUID id, User user) {
+    public int updateUserById(UUID id, Person user) {
         return userDeo.updateUser(id, user);
     }
 }

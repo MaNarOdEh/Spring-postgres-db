@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -21,9 +22,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "movie")
+@Table(name = "movie", schema = "public")
 @Data
-public class Movie {
+public class Movie implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter
@@ -32,7 +33,7 @@ public class Movie {
     @NotBlank
     @Setter
     @Getter
-    @Column(name = "movieId")
+    @Column(name = "movieid")
     private String movieId;
 
     @NotBlank
@@ -43,20 +44,20 @@ public class Movie {
 
     @ManyToOne(fetch = FetchType.LAZY)
 
-    // @JoinColumn(name = "userId", referencedColumnName = "id")
+    @JoinColumn(name = "personid", referencedColumnName = "id")
 
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private User user;
-
-    public Movie(String movieId, User user) {
-        if (this.id == null)
-            this.id = UUID.randomUUID();
-        this.user = user;
-    }
+    private Person person;
 
     public Movie(String movieId) {
         super();
         this.movieId = movieId;
+    }
+
+    public Movie(String movieId, Person person) {
+        if (this.id == null)
+            this.id = UUID.randomUUID();
+        this.person = person;
     }
 
     public Movie() {
@@ -64,8 +65,8 @@ public class Movie {
             this.id = UUID.randomUUID();
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
 }

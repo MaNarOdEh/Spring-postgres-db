@@ -13,26 +13,30 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table
-public class User {
+@Table(name = "person", schema = "public")
+public class Person {
 
     @Id
     private UUID id;
     @NotBlank
-    @Column(name = "userName")
+    @Column(name = "username")
     private String userName;
     @NotBlank
-    @Column(name = "userPassword")
+    @Column(name = "userpassword")
     private String userPassword;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    // @JoinColumn(name = "user_id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @JoinColumn(name = "personid")
+
+    @JsonIgnore
     private List<Movie> movies;
 
-    public User(@JsonProperty("userName") String userName, @JsonProperty("password") String password) {
+    public Person(@JsonProperty("userName") String userName, @JsonProperty("password") String password) {
         if (this.id == null) {
             this.id = UUID.randomUUID();
         }
@@ -41,7 +45,7 @@ public class User {
         this.movies = new ArrayList<>();
     }
 
-    public User() {
+    public Person() {
 
     }
 
@@ -90,6 +94,7 @@ public class User {
     /**
      * @return the movies
      */
+
     public List<Movie> getMovies() {
         return movies;
     }
@@ -97,17 +102,18 @@ public class User {
     /**
      * @param movies the movies to set
      */
+
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
 
     public void addMovie(Movie movie) {
-        this.movies.add(movie);
-        movie.setUser(this);
+        // this.movies.add(movie);
+        movie.setPerson(this);
     }
 
     public void removeMovie(Movie movie) {
-        this.movies.remove(movie);
-        movie.setUser(null);
+        // this.movies.remove(movie);
+        movie.setPerson(null);
     }
 }
