@@ -1,11 +1,14 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -25,12 +28,17 @@ public class User {
     @Column(name = "userPassword")
     private String userPassword;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    // @JoinColumn(name = "user_id")
     private List<Movie> movies;
 
     public User(@JsonProperty("userName") String userName, @JsonProperty("password") String password) {
+        if (this.id == null) {
+            this.id = UUID.randomUUID();
+        }
         this.userName = userName;
         this.userPassword = password;
+        this.movies = new ArrayList<>();
     }
 
     public User() {
@@ -77,5 +85,29 @@ public class User {
      */
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    /**
+     * @return the movies
+     */
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    /**
+     * @param movies the movies to set
+     */
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
+
+    public void addMovie(Movie movie) {
+        this.movies.add(movie);
+        movie.setUser(this);
+    }
+
+    public void removeMovie(Movie movie) {
+        this.movies.remove(movie);
+        movie.setUser(null);
     }
 }

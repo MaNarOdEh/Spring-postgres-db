@@ -33,6 +33,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public void addUser(@Valid @NonNull @RequestBody User user) {
+        System.out.println(user.getUserName() + "  " + user.getUserPassword() + "  " + user.getId());
         userServices.save(user);
     }
 

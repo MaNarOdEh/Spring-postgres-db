@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,34 +34,38 @@ public class Movie {
     @Getter
     @Column(name = "movieId")
     private String movieId;
-    /*
-     * @Getter
-     * 
-     * @Setter
-     * 
-     * @Column(name = "userId") private UUID userId;
-     */
-
-    @ManyToOne(fetch = FetchType.LAZY)
-
-    @JoinColumn(name = "user_id")
 
     @NotBlank
 
     @Getter
 
     @Setter
+
+    @ManyToOne(fetch = FetchType.LAZY)
+
+    // @JoinColumn(name = "userId", referencedColumnName = "id")
+
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     public Movie(String movieId, User user) {
         if (this.id == null)
             this.id = UUID.randomUUID();
-        // this.movieId = movieId;
         this.user = user;
     }
 
-    public Movie() {
+    public Movie(String movieId) {
+        super();
+        this.movieId = movieId;
+    }
 
+    public Movie() {
+        if (this.id == null)
+            this.id = UUID.randomUUID();
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }
