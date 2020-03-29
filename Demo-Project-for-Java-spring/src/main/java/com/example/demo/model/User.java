@@ -1,10 +1,12 @@
 package com.example.demo.model;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -22,6 +24,9 @@ public class User {
     @NotBlank
     @Column(name = "userPassword")
     private String userPassword;
+
+    @OneToMany(mappedBy = "user")
+    private List<Movie> movies;
 
     public User(@JsonProperty("userName") String userName, @JsonProperty("password") String password) {
         this.userName = userName;

@@ -24,9 +24,8 @@ public class MovieServices {
     }
 
     public List<Movie> getUserMovie(UUID userId) {
-        List<Movie> movie = new ArrayList<>();
-        movieRepository.findAll().forEach(movie::add);
-        return movie;
+        // return movieRepository.findByUserId(userId);
+        return new ArrayList<>();
     }
 
 }

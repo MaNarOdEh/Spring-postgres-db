@@ -4,9 +4,12 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -28,17 +31,30 @@ public class Movie {
     @Getter
     @Column(name = "movieId")
     private String movieId;
-    @NotBlank
-    @Setter
-    @Getter
-    @Column(name = "userId")
-    private UUID userId;
+    /*
+     * @Getter
+     * 
+     * @Setter
+     * 
+     * @Column(name = "userId") private UUID userId;
+     */
 
-    public Movie(String movieId, UUID userId) {
+    @ManyToOne(fetch = FetchType.LAZY)
+
+    @JoinColumn(name = "user_id")
+
+    @NotBlank
+
+    @Getter
+
+    @Setter
+    private User user;
+
+    public Movie(String movieId, User user) {
         if (this.id == null)
             this.id = UUID.randomUUID();
-        this.movieId = movieId;
-        this.userId = userId;
+        // this.movieId = movieId;
+        this.user = user;
     }
 
     public Movie() {
