@@ -15,7 +15,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -23,8 +22,6 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Table(name = "movie", schema = "public")
@@ -46,22 +43,22 @@ public class Movie implements Serializable {
     @JsonIgnoreProperties("person")
     private Person person;
 
+    public Movie() {
+        if (this.id == null) {
+            this.id = UUID.randomUUID();
+        }
+    }
+
     public Movie(String movieId) {
-        super();
+        this();
         this.movieId = movieId;
     }
 
     public Movie(@JsonProperty("movieid") String movieId, @JsonProperty("person") Person person) {
-        if (this.id == null)
-            this.id = UUID.randomUUID();
+        this(movieId);
         this.person = person;
         this.movieId = movieId;
 
-    }
-
-    public Movie() {
-        if (this.id == null)
-            this.id = UUID.randomUUID();
     }
 
     public void setPerson(Person person) {

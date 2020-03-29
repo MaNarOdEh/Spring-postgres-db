@@ -38,15 +38,15 @@ public class Person implements Serializable {
     private List<Movie> movies = new ArrayList<>();
 
     public Person(@JsonProperty("userName") String userName, @JsonProperty("password") String password) {
-        if (this.id == null) {
-            this.id = UUID.randomUUID();
-        }
+        this();
         this.userName = userName;
         this.userPassword = password;
     }
 
     public Person() {
-
+        if (this.id == null) {
+            this.id = UUID.randomUUID();
+        }
     }
 
     /**
