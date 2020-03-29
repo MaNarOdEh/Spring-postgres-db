@@ -57,7 +57,7 @@ public class PersonController {
 
     @PutMapping("/{id}")
     public void updateUser(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody Person user) {
-        // userServices.updateUser(id, user);
+        userServices.setUserInfoById(user.getUserName(), user.getUserPassword(), id);
     }
 
 }

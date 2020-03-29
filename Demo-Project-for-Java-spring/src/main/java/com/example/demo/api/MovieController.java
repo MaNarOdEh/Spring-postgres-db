@@ -34,6 +34,11 @@ public class MovieController {
 
     @DeleteMapping()
     public void deleteMovie(@RequestBody Movie movie) {
-        // movieServices.deleteMovie(movie.getPerson().getId(), movie.getId());
+        movieServices.deleteMovie(movie.getPerson().getId(), movie.getMovieId());
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteMovie(@PathVariable("id") UUID id) {
+        movieServices.deleteMovieById(id);
     }
 }

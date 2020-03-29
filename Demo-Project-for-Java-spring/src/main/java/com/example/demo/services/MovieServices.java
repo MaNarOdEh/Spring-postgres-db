@@ -23,6 +23,10 @@ public class MovieServices {
         movieRepository.deleteByPersonIdAndMovieId(personId, movieId);
     }
 
+    public void deleteMovieById(UUID id) {
+        movieRepository.deleteById(id);
+    }
+
     public List<Movie> getUserMovie(UUID userId) {
         return movieRepository.findByPersonId(userId);
     }
