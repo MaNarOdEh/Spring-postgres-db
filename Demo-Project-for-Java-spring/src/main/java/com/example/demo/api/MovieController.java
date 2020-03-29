@@ -23,6 +23,7 @@ public class MovieController {
 
     @GetMapping("{id}")
     public List<Movie> getMovies(@PathVariable("id") UUID userId) {
+        System.out.println(movieServices.getUserMovie(userId).size());
         return movieServices.getUserMovie(userId);
     }
 
@@ -33,6 +34,6 @@ public class MovieController {
 
     @DeleteMapping()
     public void deleteMovie(@RequestBody Movie movie) {
-        movieServices.deleteMovie(movie);
+        // movieServices.deleteMovie(movie.getPerson().getId(), movie.getId());
     }
 }

@@ -13,6 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -24,29 +29,21 @@ import lombok.Setter;
 @Entity
 @Table(name = "movie", schema = "public")
 @Data
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Movie implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Setter
-    @Getter
     private UUID id;
-    @NotBlank
-    @Setter
-    @Getter
+
     @Column(name = "movieid")
+    @NotBlank
     private String movieId;
 
-    @NotBlank
-
-    @Getter
-
-    @Setter
-
-    @ManyToOne(fetch = FetchType.LAZY)
-
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "personid", referencedColumnName = "id")
-
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnoreProperties("person")
     private Person person;
 
     public Movie(String movieId) {
@@ -54,10 +51,12 @@ public class Movie implements Serializable {
         this.movieId = movieId;
     }
 
-    public Movie(String movieId, Person person) {
+    public Movie(@JsonProperty("movieid") String movieId, @JsonProperty("person") Person person) {
         if (this.id == null)
             this.id = UUID.randomUUID();
         this.person = person;
+        this.movieId = movieId;
+
     }
 
     public Movie() {
@@ -67,6 +66,41 @@ public class Movie implements Serializable {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    /**
+     * @return the id
+     */
+    public UUID getId() {
+        return id;
+    }
+
+    /**
+     * @return the movieId
+     */
+    public String getMovieId() {
+        return movieId;
+    }
+
+    /**
+     * @return the person
+     */
+    public Person getPerson() {
+        return person;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    /**
+     * @param movieId the movieId to set
+     */
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
     }
 
 }

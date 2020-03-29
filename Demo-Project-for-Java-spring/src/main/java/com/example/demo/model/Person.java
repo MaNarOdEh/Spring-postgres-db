@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "person", schema = "public")
-public class Person {
+public class Person implements Serializable {
 
     @Id
     private UUID id;
@@ -34,7 +35,7 @@ public class Person {
     @JoinColumn(name = "personid")
 
     @JsonIgnore
-    private List<Movie> movies;
+    private List<Movie> movies = new ArrayList<>();
 
     public Person(@JsonProperty("userName") String userName, @JsonProperty("password") String password) {
         if (this.id == null) {
@@ -42,7 +43,6 @@ public class Person {
         }
         this.userName = userName;
         this.userPassword = password;
-        this.movies = new ArrayList<>();
     }
 
     public Person() {
@@ -108,12 +108,12 @@ public class Person {
     }
 
     public void addMovie(Movie movie) {
-        // this.movies.add(movie);
+        this.movies.add(movie);
         movie.setPerson(this);
     }
 
     public void removeMovie(Movie movie) {
-        // this.movies.remove(movie);
+        this.movies.remove(movie);
         movie.setPerson(null);
     }
 }

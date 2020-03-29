@@ -19,13 +19,12 @@ public class MovieServices {
         return movieRepository.save(movie) != null;
     }
 
-    public void deleteMovie(Movie movie) {
-        movieRepository.delete(movie);
+    public void deleteMovie(UUID personId, String movieId) {
+        movieRepository.deleteByPersonIdAndMovieId(personId, movieId);
     }
 
     public List<Movie> getUserMovie(UUID userId) {
-        // return movieRepository.findByUserId(userId);
-        return new ArrayList<>();
+        return movieRepository.findByPersonId(userId);
     }
 
 }
