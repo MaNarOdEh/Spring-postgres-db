@@ -25,12 +25,6 @@ public class UserDataAccess implements UserDeo {
     }
 
     @Override
-    public List<User> selectAllUsers() {
-        String sql = "SELECT id, username, userpassword FROM user";
-        return null;
-    }
-
-    @Override
     public Optional<User> selectUserById(UUID id) {
         String sql = "SELECT * FROM \"user\" WHERE id =?";
         User user = jdbcTemplate.queryForObject(sql, new Object[] { id }, new UserRowMapper());
@@ -48,6 +42,12 @@ public class UserDataAccess implements UserDeo {
     public int updateUser(UUID id, User user) {
         String sql = "" + "INSERT INTO \"user\" (" + " id, " + " userName, " + " userPassword) " + "VALUES (?, ?, ?)";
         return jdbcTemplate.update(sql, id, user.getUserName(), user.getUserPassword());
+    }
+
+    @Override
+    public List<User> selectAllUsers() {
+        String sql = "SELECT id, username, userpassword FROM user";
+        return null;
     }
 
 }

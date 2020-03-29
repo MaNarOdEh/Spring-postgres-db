@@ -2,20 +2,28 @@ package com.example.demo.model;
 
 import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@Entity
+@Table
 public class User {
 
+    @Id
     private UUID id;
     @NotBlank
+    @Column(name = "userName")
     private String userName;
     @NotBlank
+    @Column(name = "userPassword")
     private String userPassword;
 
     public User(@JsonProperty("userName") String userName, @JsonProperty("password") String password) {
-        this.id = UUID.randomUUID();
         this.userName = userName;
         this.userPassword = password;
     }

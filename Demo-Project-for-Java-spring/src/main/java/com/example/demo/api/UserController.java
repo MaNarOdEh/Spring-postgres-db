@@ -1,12 +1,13 @@
 package com.example.demo.api;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
 
+import com.example.demo.deo.UserRepository;
 import com.example.demo.model.User;
-import com.example.demo.services.UserServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
@@ -23,36 +24,39 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/user")
 public class UserController {
 
-    private final UserServices userServices;
+    private final UserRepository userServices;
 
     @Autowired
-    public UserController(UserServices userServices) {
+    public UserController(UserRepository userServices) {
         this.userServices = userServices;
     }
 
     @PostMapping("/signup")
     public void addUser(@Valid @NonNull @RequestBody User user) {
-        userServices.addUser(user);
+        userServices.save(user);
     }
 
     @GetMapping({ "/", "" })
     public List<User> getAllUsers() {
-        return userServices.selectAllUsers();
+        List<User> users = new ArrayList<>();
+        userServices.findAll().forEach(users::add);
+        return users;
+
     }
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable("id") UUID id) {
-        return userServices.getUserById(id).orElse(null);
+        return userServices.findById(id).orElse(null);
     }
 
     @DeleteMapping({ "/{id}" })
     public void deleteUser(@PathVariable("id") UUID id) {
-        userServices.deleteUser(id);
+        userServices.deleteById(id);
     }
 
     @PutMapping("/{id}")
     public void updateUser(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody User user) {
-        userServices.updateUserById(id, user);
+        // userServices.updateUser(id, user);
     }
 
 }
