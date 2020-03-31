@@ -37,6 +37,11 @@ public class MovieController {
         movieServices.deleteMovie(movie.getPerson().getId(), movie.getMovieId());
     }
 
+    @DeleteMapping("{idUser}/movies/{movieId}")
+    public void deleteMovie(@PathVariable("idUser") UUID userId, @PathVariable("movieId") String movieId) {
+        movieServices.deleteMovie(userId, movieId);
+    }
+
     @DeleteMapping("{id}")
     public void deleteMovie(@PathVariable("id") UUID id) {
         movieServices.deleteMovieById(id);
