@@ -7,6 +7,7 @@ import java.util.UUID;
 import javax.validation.Valid;
 
 import com.example.demo.repository.PersonRepository;
+import com.example.demo.services.PersonService;
 import com.example.demo.model.Person;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,41 +25,34 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/user")
 public class PersonController {
 
-    private final PersonRepository userServices;
-
     @Autowired
-    public PersonController(PersonRepository userServices) {
-        this.userServices = userServices;
-    }
+    private PersonService personService;
 
     @PostMapping("/signup")
     public void addUser(@Valid @NonNull @RequestBody Person user) {
-        System.out.println(user.getUserName() + "  " + user.getUserPassword() + "  " + user.getId());
-        userServices.save(user);
+        this.personService.save(user);
     }
 
     @GetMapping({ "/", "" })
     public List<Person> getAllUsers() {
-        List<Person> users = new ArrayList<>();
-        userServices.findAll().forEach(users::add);
-        return users;
+        return this.personService.findAll();
 
     }
 
     @GetMapping("/{id}")
     public Person getUserById(@PathVariable("id") UUID id) {
-        return userServices.findById(id).orElse(null);
+        return this.personService.findById(id);
     }
 
     @DeleteMapping({ "/{id}" })
     public void deleteUser(@PathVariable("id") UUID id) {
-        userServices.deleteById(id);
+        this.personService.deleteById(id);
     }
 
     @PutMapping("/{id}")
     public void updateUser(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody Person user) {
         user.setId(id);
-        userServices.save(user);
+        this.personService.save(user);
     }
 
 }
