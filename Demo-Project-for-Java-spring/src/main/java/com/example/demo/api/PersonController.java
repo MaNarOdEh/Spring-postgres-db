@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 
-import com.example.demo.deo.PersonRepository;
+import com.example.demo.repository.PersonRepository;
 import com.example.demo.model.Person;
 
 import org.springframework.beans.factory.annotation.Autowired;

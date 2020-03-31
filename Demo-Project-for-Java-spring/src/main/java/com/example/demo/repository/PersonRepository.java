@@ -1,4 +1,4 @@
-package com.example.demo.deo;
+package com.example.demo.repository;
 
 import java.util.UUID;
 
