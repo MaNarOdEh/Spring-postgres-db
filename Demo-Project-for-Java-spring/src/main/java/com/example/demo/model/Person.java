@@ -57,21 +57,21 @@ public class Person implements UserDetails {
      * @return the id
      */
     public UUID getId() {
-        return id;
+        return this.id;
     }
 
     /**
      * @return the userPassword
      */
     public String getUserPassword() {
-        return userPassword;
+        return this.userPassword;
     }
 
     /**
      * @return the userName
      */
     public String getUserName() {
-        return userName;
+        return this.userName;
     }
 
     /**
@@ -128,12 +128,12 @@ public class Person implements UserDetails {
 
     @Override
     public String getPassword() {
-        return userPassword;
+        return this.userPassword;
     }
 
     @Override
     public String getUsername() {
-        return userName;
+        return this.userName;
     }
 
     @Override
@@ -155,4 +155,5 @@ public class Person implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

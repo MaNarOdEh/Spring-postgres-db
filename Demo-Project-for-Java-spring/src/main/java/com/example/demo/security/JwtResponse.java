@@ -14,7 +14,7 @@ public class JwtResponse {
      * @return the token
      */
     public String getToken() {
-        return token;
+        return this.token;
     }
 
     /**

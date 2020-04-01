@@ -41,8 +41,6 @@ public class AuthController {
     @PostMapping(value = { "", "/" })
     public JwtResponse signIn(@RequestBody SignInRequest signInRequest) {
 
-        // there is an issues here authenticationManager gives Unauthorized all the
-        // time!!
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(signInRequest.getUserName(), signInRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);

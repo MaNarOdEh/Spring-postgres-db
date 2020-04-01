@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SignInRequest {
     private String userName;
     private String password;
@@ -7,7 +9,7 @@ public class SignInRequest {
     public SignInRequest() {
     }
 
-    public SignInRequest(String name, String password) {
+    public SignInRequest(@JsonProperty("userName") String name, @JsonProperty("password") String password) {
         this.userName = name;
         this.password = password;
     }
@@ -16,13 +18,13 @@ public class SignInRequest {
      * @return the password
      */
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     /**
      * @return the userName
      */
     public String getUserName() {
-        return userName;
+        return this.userName;
     }
 }
