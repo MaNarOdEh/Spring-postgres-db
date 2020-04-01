@@ -3,6 +3,9 @@ package com.example.demo.security;
 public class JwtResponse {
     private String token;
 
+    public JwtResponse() {
+    }
+
     public JwtResponse(String token) {
         this.token = token;
     }

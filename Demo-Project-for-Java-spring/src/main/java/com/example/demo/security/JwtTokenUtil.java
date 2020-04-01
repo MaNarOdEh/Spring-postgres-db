@@ -12,7 +12,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
-public class TokenUtil {
+public class JwtTokenUtil {
     private final String CLAIMS_SUBJECT = "sub";
     private final String CLAIMS_CREATED = "created";
     @Value("${auth.expirtaion}")

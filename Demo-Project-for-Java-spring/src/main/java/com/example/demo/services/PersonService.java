@@ -28,7 +28,6 @@ public class PersonService implements UserDetailsService, PersonServicesInt {
         if (person == null) {
             throw new UsernameNotFoundException("user Not Found!!");
         }
-        System.out.println(person.getPassword() + "  " + person.getUserName());
         return person;
     }
 

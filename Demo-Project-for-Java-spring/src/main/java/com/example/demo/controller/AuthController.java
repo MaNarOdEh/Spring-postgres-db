@@ -3,7 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Person;
 import com.example.demo.model.SignInRequest;
 import com.example.demo.security.JwtResponse;
-import com.example.demo.security.TokenUtil;
+import com.example.demo.security.JwtTokenUtil;
 import com.example.demo.services.PersonService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/auth")
 public class AuthController {
     @Autowired
-    private TokenUtil tokenUtil;
+    private JwtTokenUtil tokenUtil;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -40,16 +40,18 @@ public class AuthController {
 
     @PostMapping(value = { "", "/" })
     public JwtResponse signIn(@RequestBody SignInRequest signInRequest) {
+
+        // there is an issues here authenticationManager gives Unauthorized all the
+        // time!!
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(signInRequest.getUserName(), signInRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
         UserDetails userDetails = personService.loadUserByUsername(signInRequest.getUserName());
         String token = tokenUtil.generateToken(userDetails);
         JwtResponse jwtResponse = new JwtResponse(token);
-        System.out.println(userDetails);
-        System.out.println(jwtResponse);
-        System.out.println(token);
         return jwtResponse;
+
     }
 
     @GetMapping()
