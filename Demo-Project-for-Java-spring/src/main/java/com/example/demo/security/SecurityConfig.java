@@ -11,7 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final String[] PUPLIC_END_POINTS = { "/api/v1/auth/**", "/api/public", "/api/v1/auth" };
+    private final String[] PUPLIC_END_POINTS = { "/api/v1/auth/**", "/api/public" };
 
     @Bean
     @Override
