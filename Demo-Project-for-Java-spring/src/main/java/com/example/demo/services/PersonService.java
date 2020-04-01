@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.example.demo.model.Person;
 import com.example.demo.repository.PersonRepository;
+import com.example.demo.services.servicesInterface.PersonServicesInt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

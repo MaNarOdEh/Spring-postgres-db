@@ -8,6 +8,7 @@ import com.example.demo.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.repository.MovieRepository;
+import com.example.demo.services.servicesInterface.MovieServicesInt;
 
 @Service
 public class MovieServices implements MovieServicesInt {

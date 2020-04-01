@@ -1,4 +1,4 @@
-package com.example.demo.services;
+package com.example.demo.services.servicesInterface;
 
 import java.util.List;
 import java.util.UUID;
