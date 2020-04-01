@@ -9,8 +9,6 @@ import com.example.demo.repository.PersonRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,8 +22,13 @@ public class PersonService implements UserDetailsService {
     private PersonRepository personRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
-        return new User("userName", passwordEncoder().encode("password"), AuthorityUtils.NO_AUTHORITIES);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Person person = personRepository.findByUserName(username);
+        if (person == null) {
+            throw new UsernameNotFoundException("user Not Found!!");
+        }
+        System.out.println(person.getPassword() + "  " + person.getUserName());
+        return person;
     }
 
     @Bean

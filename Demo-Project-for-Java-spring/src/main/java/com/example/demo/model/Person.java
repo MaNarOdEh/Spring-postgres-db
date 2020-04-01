@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -23,7 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "person", schema = "public")
-public class Person implements Serializable, UserDetails {
+public class Person implements UserDetails {
 
     @Id
     private UUID id;
@@ -32,7 +31,6 @@ public class Person implements Serializable, UserDetails {
     private String userName;
     @NotBlank
     @Column(name = "userpassword")
-    @JsonIgnore
     private String userPassword;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -129,7 +127,7 @@ public class Person implements Serializable, UserDetails {
 
     @Override
     public String getPassword() {
-        return userName;
+        return userPassword;
     }
 
     @Override

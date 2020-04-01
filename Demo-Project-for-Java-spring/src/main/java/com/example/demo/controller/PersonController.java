@@ -1,12 +1,10 @@
-package com.example.demo.api;
+package com.example.demo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
 
-import com.example.demo.repository.PersonRepository;
 import com.example.demo.services.PersonService;
 import com.example.demo.model.Person;
 
@@ -36,7 +34,6 @@ public class PersonController {
     @GetMapping({ "/", "" })
     public List<Person> getAllUsers() {
         return this.personService.findAll();
-
     }
 
     @GetMapping("/{id}")
