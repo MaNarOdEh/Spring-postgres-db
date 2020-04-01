@@ -10,22 +10,26 @@ import org.springframework.stereotype.Service;
 import com.example.demo.repository.MovieRepository;
 
 @Service
-public class MovieServices {
+public class MovieServices implements MovieServicesInt {
     @Autowired
     private MovieRepository movieRepository;
 
+    @Override
     public boolean addMovie(Movie movie) {
         return movieRepository.save(movie) != null;
     }
 
+    @Override
     public void deleteMovie(UUID personId, String movieId) {
         movieRepository.deleteByPersonIdAndMovieId(personId, movieId);
     }
 
+    @Override
     public void deleteMovieById(UUID id) {
         movieRepository.deleteById(id);
     }
 
+    @Override
     public List<Movie> getUserMovie(UUID userId) {
         return movieRepository.findByPersonId(userId);
     }

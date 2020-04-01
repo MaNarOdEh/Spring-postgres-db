@@ -31,6 +31,7 @@ public class Person implements UserDetails {
     private String userName;
     @NotBlank
     @Column(name = "userpassword")
+    @JsonIgnore
     private String userPassword;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

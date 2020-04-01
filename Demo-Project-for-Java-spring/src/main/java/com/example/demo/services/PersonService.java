@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonService implements UserDetailsService {
+public class PersonService implements UserDetailsService, PersonServicesInt {
     @Autowired
     private PersonRepository personRepository;
 
@@ -36,21 +36,25 @@ public class PersonService implements UserDetailsService {
         return new BCryptPasswordEncoder();
     }
 
+    @Override
     public void save(Person person) {
         person.setUserPassword(passwordEncoder().encode(person.getPassword()));
         this.personRepository.save(person);
     }
 
+    @Override
     public List<Person> findAll() {
         List<Person> users = new ArrayList<>();
         this.personRepository.findAll().forEach(users::add);
         return users;
     }
 
+    @Override
     public void deleteById(UUID id) {
         this.personRepository.deleteById(id);
     }
 
+    @Override
     public Person findById(UUID id) {
         return this.personRepository.findById(id).orElse(null);
     }

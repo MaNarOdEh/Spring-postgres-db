@@ -24,8 +24,7 @@ public class TokenUtil {
         Map<String, Object> claims = new HashMap<>();
         claims.put(CLAIMS_SUBJECT, userDetils.getUsername());
         claims.put(CLAIMS_CREATED, new Date());
-        System.out.println(Jwts.builder().setClaims(claims).setExpiration(generateExperiation())
-                .signWith(SignatureAlgorithm.HS512, TOKEN_SECRET).compact());
+
         return Jwts.builder().setClaims(claims).setExpiration(generateExperiation())
                 .signWith(SignatureAlgorithm.HS512, TOKEN_SECRET).compact();
 
