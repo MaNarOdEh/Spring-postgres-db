@@ -21,6 +21,11 @@ public class JwtTokenUtil {
     @Value("${auth.secret}")
     private String TOKEN_SECRET = "movieAPISecret";
 
+    /**
+     * 
+     * @param userDetils
+     * @return String
+     */
     public String generateToken(UserDetails userDetils) {
         Map<String, Object> claims = new HashMap<>();
         claims.put(CLAIMS_SUBJECT, userDetils.getUsername());

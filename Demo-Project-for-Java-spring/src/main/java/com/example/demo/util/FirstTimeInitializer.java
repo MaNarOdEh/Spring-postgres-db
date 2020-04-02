@@ -17,6 +17,16 @@ public class FirstTimeInitializer implements CommandLineRunner {
     @Autowired
     private PersonService personService;
 
+    /**
+     * run method
+     * 
+     * This method will check if there is no any users in person tabels it will add
+     * some users
+     * 
+     * @param args this method can accepts an array of string but no need here to
+     *             pass any thing
+     * @return nothing
+     */
     @Override
     public void run(String... args) throws Exception {
         if (personService.findAll().isEmpty()) {

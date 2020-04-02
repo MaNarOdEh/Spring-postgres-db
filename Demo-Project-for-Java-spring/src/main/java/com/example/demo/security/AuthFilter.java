@@ -32,8 +32,6 @@ public class AuthFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        // take the url and check it before passing it to your server or to your
-        // postgress
         String header = request.getHeader(TOKEN_HEADER);
         final SecurityContext securityContext = SecurityContextHolder.getContext();
         if (header != null && securityContext == null) {
