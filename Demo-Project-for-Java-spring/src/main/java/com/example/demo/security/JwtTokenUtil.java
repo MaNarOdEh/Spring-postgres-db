@@ -24,9 +24,9 @@ public class JwtTokenUtil {
     /**
      * generateToken method
      * 
-     * This method will generate user token from user information[claims] and secret
-     * , the token will identifies the user and will be used nect in secure all the
-     * next response.
+     * This method will generate user token from user information[claims] and
+     * secret(Signature) , the token will identifies the user and will be used nect
+     * in secure all the next response.
      * 
      * @param userDetils the userdetails that we want to genrate the token for it.
      * @return String compact token from [header,claims,secret]

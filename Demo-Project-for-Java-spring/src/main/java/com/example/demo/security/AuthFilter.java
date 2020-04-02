@@ -29,6 +29,17 @@ public class AuthFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    /**
+     * doFilterInternal method
+     * 
+     * This method will check if the token valid and if this token for specific user
+     * then it will setAuthentication
+     * 
+     * @param HttpServletRequest
+     * @param HttpServletResponse
+     * @param filterchain
+     * @return nothing
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
