@@ -1,10 +1,12 @@
-package com.example.demo.validator;
+package com.example.demo.validators;
 
 import com.example.demo.model.Person;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+@Component("beforeCreateEventPersonValidator")
 public class PersonValidator implements Validator {
 
     @Override

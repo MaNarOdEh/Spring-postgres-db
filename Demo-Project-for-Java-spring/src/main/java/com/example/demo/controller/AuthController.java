@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Person;
 import com.example.demo.model.SignInRequest;
 import com.example.demo.security.JwtResponse;
 import com.example.demo.security.JwtTokenUtil;
@@ -12,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,6 +57,11 @@ public class AuthController {
     @GetMapping()
     public String getHey() {
         return "hey!";
+    }
+
+    @ExceptionHandler
+    public String handleException(Exception exp) {
+        return new String("This Message will appear intstead of messag" + exp.getMessage() + exp.getClass());
     }
 
 }

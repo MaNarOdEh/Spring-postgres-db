@@ -45,7 +45,7 @@ public class AuthFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         String header = request.getHeader(TOKEN_HEADER);
         final SecurityContext securityContext = SecurityContextHolder.getContext();
-        if (header != null && securityContext == null) {
+        if (header != null && securityContext != null) {
             String token = header.substring("Bearer ".length());
             String username = jwtTokenUtil.getUserNameFromToken(token);
             if (username != null) {
