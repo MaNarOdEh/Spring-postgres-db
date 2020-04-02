@@ -59,9 +59,10 @@ public class AuthController {
         return "hey!";
     }
 
-    @ExceptionHandler
-    public String handleException(Exception exp) {
-        return new String("This Message will appear intstead of messag" + exp.getMessage() + exp.getClass());
-    }
+    /*
+     * @ExceptionHandler public String handleException(Exception exp) { return new
+     * String("This Message will appear intstead of messag" + exp.getMessage() +
+     * exp.getClass()); }
+     */
 
 }
