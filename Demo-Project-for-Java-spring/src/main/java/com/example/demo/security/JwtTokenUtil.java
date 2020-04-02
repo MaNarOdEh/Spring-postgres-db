@@ -24,8 +24,9 @@ public class JwtTokenUtil {
     /**
      * generateToken method
      * 
-     * This method will generate user token from user information and token secret ,
-     * the token will identifies the user and secure all the response.
+     * This method will generate user token from user information[claims] and secret
+     * , the token will identifies the user and will be used nect in secure all the
+     * next response.
      * 
      * @param userDetils the userdetails that we want to genrate the token for it.
      * @return String compact token from [header,claims,secret]
@@ -45,7 +46,7 @@ public class JwtTokenUtil {
      * 
      * it will add 7 days to the current date.
      * 
-     * @return expiration date for the token.
+     * @return expiration date
      */
     private Date generateExperiation() {
         return new Date(System.currentTimeMillis() + TOKEN_VALIDATIY * 1000);// convert to millisecond
@@ -74,11 +75,11 @@ public class JwtTokenUtil {
      * isTokenValid method
      * 
      * This method will check if the token is valid by check the data expiration &
-     * try to get user name from token and compare it with user name.
+     * try to get user name from token and compare it with given user name.
      * 
      * @param token       represent user token
-     * @param userDetails userDetails object which hold user namd & user password
-     * @return boolean true in case the token is valid ,false otherwise
+     * @param userDetails userDetails object which hold user name & user password
+     * @return boolean true in case if the token is valid ,false otherwise
      */
     public boolean isTokenValid(String token, UserDetails userDetails) {
         String username = getUserNameFromToken(token);
@@ -103,7 +104,7 @@ public class JwtTokenUtil {
     /**
      * getClaims method
      * 
-     * It will return the payload section by [claims] from the token
+     * It will return the payload section [claims] from the token
      * 
      * @param token
      * @return claims which represent user info and other meta data
