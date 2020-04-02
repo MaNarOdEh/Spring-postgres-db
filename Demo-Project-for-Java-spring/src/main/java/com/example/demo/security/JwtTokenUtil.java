@@ -22,9 +22,13 @@ public class JwtTokenUtil {
     private String TOKEN_SECRET = "movieAPISecret";
 
     /**
+     * generateToken method
      * 
-     * @param userDetils
-     * @return String
+     * This method will generate user token from user information and token secret ,
+     * the token will identifies the user and secure all the response.
+     * 
+     * @param userDetils the userdetails that we want to genrate the token for it.
+     * @return String compact token from [header,claims,secret]
      */
     public String generateToken(UserDetails userDetils) {
         Map<String, Object> claims = new HashMap<>();
@@ -36,10 +40,26 @@ public class JwtTokenUtil {
 
     }
 
+    /**
+     * generateExpiration method
+     * 
+     * it will add 7 days to the current date.
+     * 
+     * @return expiration date for the token.
+     */
     private Date generateExperiation() {
         return new Date(System.currentTimeMillis() + TOKEN_VALIDATIY * 1000);// convert to millisecond
     }
 
+    /**
+     * getUserNameFromToken method
+     * 
+     * This method will extract user details from user token and return user name
+     * 
+     * @param token it will accept user token and return userName from it.
+     * @return String which represent user name or null in case if the token is
+     *         wrong.
+     */
     public String getUserNameFromToken(String token) {
         try {
 
@@ -50,16 +70,44 @@ public class JwtTokenUtil {
         }
     }
 
+    /**
+     * isTokenValid method
+     * 
+     * This method will check if the token is valid by check the data expiration &
+     * try to get user name from token and compare it with user name.
+     * 
+     * @param token       represent user token
+     * @param userDetails userDetails object which hold user namd & user password
+     * @return boolean true in case the token is valid ,false otherwise
+     */
     public boolean isTokenValid(String token, UserDetails userDetails) {
         String username = getUserNameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
+    /**
+     * isTokenExpired
+     * 
+     * This methods will extract the expirtation data from the given token and
+     * compare it with current date
+     * 
+     * @param token
+     * @return return true when expirtation date is before current date,false
+     *         otherwise
+     */
     private boolean isTokenExpired(String token) {
         Date expiration = getClaims(token).getExpiration();
         return expiration.before(new Date());
     }
 
+    /**
+     * getClaims method
+     * 
+     * It will return the payload section by [claims] from the token
+     * 
+     * @param token
+     * @return claims which represent user info and other meta data
+     */
     private Claims getClaims(String token) {
         Claims claims;
         try {
