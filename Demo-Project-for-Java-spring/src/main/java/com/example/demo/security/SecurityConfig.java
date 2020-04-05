@@ -17,7 +17,7 @@ import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 @Import(SecurityProblemSupport.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final String[] PUPLIC_END_POINTS = { "/api/v1/auth/**", "/api/public" };
+    private final String[] PUPLIC_END_POINTS = { "/api/v1/auth/**", "/api/public/**" };
 
     @Autowired
     private SecurityProblemSupport problemSupport;

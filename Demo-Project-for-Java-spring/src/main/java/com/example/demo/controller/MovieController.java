@@ -18,11 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/favMovie")
 public class MovieController {
+
     @Autowired
     private MovieServices movieServices;
 
-    @GetMapping("{id}")
-    public List<Movie> getMovies(@PathVariable("id") UUID userId) {
+    @GetMapping("{userId}")
+    public List<Movie> getMovies(@PathVariable("userId") UUID userId) {
         return movieServices.getUserMovie(userId);
     }
 
@@ -36,6 +37,16 @@ public class MovieController {
         movieServices.deleteMovie(movie.getPerson().getId(), movie.getMovieId());
     }
 
+    /**
+     * This method will take userId & movieId and try to delete the row in DB that
+     * have the same userId & movieId it will Throw :
+     * 
+     * MovieNotFoundException =>in case the movie is Not Found
+     * 
+     * @param userId
+     * @param movieId
+     * 
+     */
     @DeleteMapping("{idUser}/movies/{movieId}")
     public void deleteMovie(@PathVariable("idUser") UUID userId, @PathVariable("movieId") String movieId) {
         movieServices.deleteMovie(userId, movieId);
