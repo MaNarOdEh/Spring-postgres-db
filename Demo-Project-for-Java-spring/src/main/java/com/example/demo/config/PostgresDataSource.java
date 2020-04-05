@@ -1,4 +1,4 @@
-package com.example.demo.datasource;
+package com.example.demo.config;
 
 import com.zaxxer.hikari.HikariDataSource;
 
