@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.example.demo.model.Movie;
 
@@ -33,6 +34,11 @@ public class MovieServices implements MovieServicesInt {
     @Override
     public List<Movie> getUserMovie(UUID userId) {
         return movieRepository.findByPersonId(userId);
+    }
+
+    public List<Movie> getMoviesStartWithChars(UUID userId, Character ch) {
+        List<Movie> movie = movieRepository.findByPersonId(userId);
+        return movie.stream().filter(mov -> mov.getMovieId().startsWith("s")).collect(Collectors.toList());
     }
 
 }

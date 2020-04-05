@@ -52,4 +52,14 @@ public class PersonController {
         this.personService.save(user);
     }
 
+    @GetMapping("/getSortedPersonName")
+    public List<String> getAllNames() {
+        return this.personService.getAllPersonNames();
+    }
+
+    @GetMapping("/userswithoutFavMovie")
+    public List<Person> getAllUserThatDoesNotHaveAnyFavouriteMovie() {
+        return this.personService.getAllUserThatDoesNotHaveAnyFavouriteMovie();
+    }
+
 }

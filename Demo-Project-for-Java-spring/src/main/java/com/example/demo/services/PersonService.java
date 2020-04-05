@@ -3,6 +3,7 @@ package com.example.demo.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.example.demo.model.Person;
 import com.example.demo.repository.PersonRepository;
@@ -57,6 +58,18 @@ public class PersonService implements UserDetailsService, PersonServicesInt {
     @Override
     public Person findById(UUID id) {
         return this.personRepository.findById(id).orElse(null);
+    }
+
+    public List<String> getAllPersonNames() {
+        List<Person> person = findAll();
+        List<String> names = person.stream().map(p -> p.getUserName()).collect(Collectors.toList());
+        names.stream().sorted().collect(Collectors.toList());
+        return names;
+    }
+
+    public List<Person> getAllUserThatDoesNotHaveAnyFavouriteMovie() {
+        List<Person> person = findAll();
+        return person.stream().filter(p -> p.getMovies().size() == 0).collect(Collectors.toList());
     }
 
 }

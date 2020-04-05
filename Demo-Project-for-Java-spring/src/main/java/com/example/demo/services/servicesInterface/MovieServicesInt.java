@@ -14,4 +14,5 @@ public interface MovieServicesInt {
     public void deleteMovieById(UUID id);
 
     public List<Movie> getUserMovie(UUID userId);
+
 }

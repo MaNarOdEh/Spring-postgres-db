@@ -46,4 +46,9 @@ public class MovieController {
     public void deleteMovie(@PathVariable("id") UUID id) {
         movieServices.deleteMovieById(id);
     }
+
+    @GetMapping("{id}/startwithchar/{ch}")
+    public List<Movie> getMoviesStartWithChars(@PathVariable("id") UUID id, @PathVariable("ch") Character ch) {
+        return movieServices.getMoviesStartWithChars(id, ch);
+    }
 }
