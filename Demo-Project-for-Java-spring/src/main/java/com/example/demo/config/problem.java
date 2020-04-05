@@ -11,7 +11,6 @@ import org.zalando.problem.validation.ConstraintViolationProblemModule;
 public class problem {
     @Bean
     public ObjectMapper objectMapper() {
-        return new ObjectMapper().registerModules(new ProblemModule().withStackTraces(),
-                new ConstraintViolationProblemModule());
+        return new ObjectMapper().registerModules(new ProblemModule(), new ConstraintViolationProblemModule());
     }
 }
