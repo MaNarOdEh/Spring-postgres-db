@@ -23,7 +23,6 @@ public class MovieController {
 
     @GetMapping("{id}")
     public List<Movie> getMovies(@PathVariable("id") UUID userId) {
-        System.out.println(movieServices.getUserMovie(userId).size());
         return movieServices.getUserMovie(userId);
     }
 

@@ -5,12 +5,14 @@ import com.example.demo.exceptions.MovieNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.zalando.problem.spring.web.advice.ProblemHandling;
 
 @ControllerAdvice
-public class MovieExceptionHandler {
+public class MovieExceptionHandler implements ProblemHandling {
     @ExceptionHandler
     @ResponseBody
     public String handleMovieNotFoundException(MovieNotFoundException exception) {
         return exception.getMessage();
     }
+
 }

@@ -1,7 +1,6 @@
 package com.example.demo.handler;
 
 import com.example.demo.exceptions.MisingRequiredFieldException;
-import com.example.demo.exceptions.PersonNotFoundException;
 
 import org.springframework.core.env.MissingRequiredPropertiesException;
 import org.springframework.http.HttpStatus;
@@ -20,11 +19,6 @@ public class PersonExceptionHandler {
     @ExceptionHandler
     public String handleMissingRequirePropertryException(MissingRequiredPropertiesException exc) {
         return exc.getMessage();
-    }
-
-    @ExceptionHandler
-    public String handlePersonNotFoundException(PersonNotFoundException exception) {
-        return exception.getMessage();
     }
 
     @ExceptionHandler

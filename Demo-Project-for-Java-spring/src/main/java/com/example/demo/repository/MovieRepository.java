@@ -14,6 +14,6 @@ public interface MovieRepository extends CrudRepository<Movie, UUID> {
 
     List<Movie> findByPerson(Person user);
 
-    void deleteByPersonIdAndMovieId(UUID userId, String movieId);
+    int deleteByPersonIdAndMovieId(UUID userId, String movieId);
 
 }

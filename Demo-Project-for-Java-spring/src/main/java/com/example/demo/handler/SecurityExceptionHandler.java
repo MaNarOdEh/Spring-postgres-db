@@ -1,9 +1,9 @@
 package com.example.demo.handler;
 
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.zalando.problem.spring.web.advice.security.SecurityAdviceTrait;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class SecurityExceptionHandler implements SecurityAdviceTrait {
 
 }

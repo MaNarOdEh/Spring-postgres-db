@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
+import com.example.demo.exceptions.MovieNotFoundException;
 import com.example.demo.model.Movie;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +25,12 @@ public class MovieServices implements MovieServicesInt {
     }
 
     @Override
+    @Transactional
     public void deleteMovie(UUID personId, String movieId) {
-        movieRepository.deleteByPersonIdAndMovieId(personId, movieId);
+        int result = movieRepository.deleteByPersonIdAndMovieId(personId, movieId);
+        if (result == 0) {
+            throw new MovieNotFoundException(movieId);
+        }
     }
 
     @Override
@@ -33,9 +40,11 @@ public class MovieServices implements MovieServicesInt {
 
     @Override
     public List<Movie> getUserMovie(UUID userId) {
-        return movieRepository.findByPersonId(userId);
+        List<Movie> movie = movieRepository.findByPersonId(userId);
+        return movie;
     }
 
+    @Override
     public List<Movie> getMoviesStartWithChars(UUID userId, Character ch) {
         List<Movie> movie = movieRepository.findByPersonId(userId);
         return movie.stream().filter(mov -> mov.getMovieId().startsWith("s")).collect(Collectors.toList());
