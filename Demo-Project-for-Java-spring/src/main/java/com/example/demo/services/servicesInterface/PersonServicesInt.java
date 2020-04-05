@@ -13,4 +13,9 @@ public interface PersonServicesInt {
     public void deleteById(UUID id);
 
     public Person findById(UUID id);
+
+    public List<String> getAllPersonNames();
+
+    public List<Person> getAllUserThatDoesNotHaveAnyFavouriteMovie();
+
 }

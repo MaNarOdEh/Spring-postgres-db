@@ -15,4 +15,5 @@ public interface MovieServicesInt {
 
     public List<Movie> getUserMovie(UUID userId);
 
+    public List<Movie> getMoviesStartWithChars(UUID userId, Character ch);
 }

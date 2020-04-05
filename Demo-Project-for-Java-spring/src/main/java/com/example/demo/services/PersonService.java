@@ -60,13 +60,13 @@ public class PersonService implements UserDetailsService, PersonServicesInt {
         return this.personRepository.findById(id).orElse(null);
     }
 
+    @Override
     public List<String> getAllPersonNames() {
         List<Person> person = findAll();
-        List<String> names = person.stream().map(p -> p.getUserName()).collect(Collectors.toList());
-        names.stream().sorted().collect(Collectors.toList());
-        return names;
+        return person.stream().map(p -> p.getUserName()).sorted().collect(Collectors.toList());
     }
 
+    @Override
     public List<Person> getAllUserThatDoesNotHaveAnyFavouriteMovie() {
         List<Person> person = findAll();
         return person.stream().filter(p -> p.getMovies().size() == 0).collect(Collectors.toList());
