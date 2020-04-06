@@ -2,8 +2,6 @@ package com.example.demo.exceptions;
 
 import java.net.URI;
 
-import com.example.demo.model.Movie;
-
 import org.zalando.problem.AbstractThrowableProblem;
 import org.zalando.problem.Status;
 

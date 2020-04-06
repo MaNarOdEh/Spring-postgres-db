@@ -1,12 +1,14 @@
 package com.example.demo.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
 import com.example.demo.exceptions.ExceededTheLimitForAddingMoviesToFavorites;
+import com.example.demo.exceptions.MovieEntityFound;
 import com.example.demo.exceptions.MovieNotFoundException;
 import com.example.demo.model.Movie;
 
@@ -20,11 +22,26 @@ public class MovieServicesImp implements MovieServices {
     @Autowired
     private MovieRepository movieRepository;
 
+    /**
+     * This method will take an movie object and try to save it.
+     * 
+     * Throw ExceededTheLimitForAddingMoviesToFavorites exception when the user have
+     * more than 5 fav movie
+     * 
+     * Throw MovieEntityFound when the movieId is already Found
+     * 
+     * @param Movie
+     * @return boolean
+     */
     @Override
     public boolean addMovie(Movie movie) {
         List<Movie> mvoies = getUserMovie(movie.getPerson().getId());
         if (mvoies.size() == 5) {
             throw new ExceededTheLimitForAddingMoviesToFavorites(movie.getMovieId());
+        }
+        Optional<Movie> result = mvoies.stream().filter(mo -> movie.getMovieId().equals(mo.getMovieId())).findAny();
+        if (result.isPresent()) {
+            throw new MovieEntityFound(movie.getMovieId());
         }
         return movieRepository.save(movie) != null;
     }
