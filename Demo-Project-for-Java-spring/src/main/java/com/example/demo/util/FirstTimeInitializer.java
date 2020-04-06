@@ -1,7 +1,7 @@
 package com.example.demo.util;
 
 import com.example.demo.model.Person;
-import com.example.demo.services.PersonService;
+import com.example.demo.services.PersonServiceImp;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,7 +15,7 @@ public class FirstTimeInitializer implements CommandLineRunner {
     private final Log logger = LogFactory.getLog(FirstTimeInitializer.class);
 
     @Autowired
-    private PersonService personService;
+    private PersonServiceImp personService;
 
     /**
      * run method

@@ -5,8 +5,8 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 
-import com.example.demo.services.PersonService;
 import com.example.demo.model.Person;
+import com.example.demo.services.PersonServiceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PersonController {
 
     @Autowired
-    private PersonService personService;
+    private PersonServiceImp personService;
 
     @PostMapping("/signup")
     public void addUser(@Valid @NonNull @RequestBody Person user) {

@@ -3,7 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.SignInRequest;
 import com.example.demo.security.JwtResponse;
 import com.example.demo.security.JwtTokenUtil;
-import com.example.demo.services.PersonService;
+import com.example.demo.services.PersonServiceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,7 +27,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private PersonService personService;
+    private PersonServiceImp personService;
 
     /**
      * signIn method

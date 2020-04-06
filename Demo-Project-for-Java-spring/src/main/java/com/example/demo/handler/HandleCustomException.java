@@ -1,5 +1,6 @@
 package com.example.demo.handler;
 
+import com.example.demo.exceptions.ExceededTheLimitForAddingMoviesToFavorites;
 import com.example.demo.exceptions.MovieNotFoundException;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,6 +11,12 @@ import org.zalando.problem.spring.web.advice.ProblemHandling;
 public class HandleCustomException implements ProblemHandling {
     @ExceptionHandler
     public String handleMovieNotFoundException(MovieNotFoundException exception) {
+        return exception.getMessage();
+    }
+
+    @ExceptionHandler
+    public String handleExceededTheLimitForAddingMoviesToFavorites(
+            ExceededTheLimitForAddingMoviesToFavorites exception) {
         return exception.getMessage();
     }
 

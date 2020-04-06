@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import com.example.demo.model.Person;
 
-public interface PersonServicesInt {
+public interface PersonServices {
     public void save(Person person);
 
     public List<Person> findAll();

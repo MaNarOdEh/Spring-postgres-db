@@ -7,9 +7,10 @@ import java.util.stream.Collectors;
 
 import com.example.demo.model.Person;
 import com.example.demo.repository.PersonRepository;
-import com.example.demo.services.servicesInterface.PersonServicesInt;
+import com.example.demo.services.servicesInterface.PersonServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonService implements UserDetailsService, PersonServicesInt {
+public class PersonServiceImp implements UserDetailsService, PersonServices {
     @Autowired
     private PersonRepository personRepository;
 
@@ -44,6 +45,7 @@ public class PersonService implements UserDetailsService, PersonServicesInt {
     }
 
     @Override
+    @Cacheable("fetchPerson")
     public List<Person> findAll() {
         List<Person> users = new ArrayList<>();
         this.personRepository.findAll().forEach(users::add);

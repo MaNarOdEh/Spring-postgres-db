@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import com.example.demo.model.Movie;
 
-public interface MovieServicesInt {
+public interface MovieServices {
 
     public boolean addMovie(Movie movie);
 

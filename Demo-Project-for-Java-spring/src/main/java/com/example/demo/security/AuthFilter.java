@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.demo.services.PersonService;
+import com.example.demo.services.PersonServiceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +24,7 @@ public class AuthFilter extends OncePerRequestFilter {
     private String TOKEN_HEADER;
 
     @Autowired
-    private PersonService personService;
+    private PersonServiceImp personService;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;

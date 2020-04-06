@@ -6,21 +6,26 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import com.example.demo.exceptions.ExceededTheLimitForAddingMoviesToFavorites;
 import com.example.demo.exceptions.MovieNotFoundException;
 import com.example.demo.model.Movie;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.repository.MovieRepository;
-import com.example.demo.services.servicesInterface.MovieServicesInt;
+import com.example.demo.services.servicesInterface.MovieServices;
 
 @Service
-public class MovieServices implements MovieServicesInt {
+public class MovieServicesImp implements MovieServices {
     @Autowired
     private MovieRepository movieRepository;
 
     @Override
     public boolean addMovie(Movie movie) {
+        List<Movie> mvoies = getUserMovie(movie.getPerson().getId());
+        if (mvoies.size() == 5) {
+            throw new ExceededTheLimitForAddingMoviesToFavorites(movie.getMovieId());
+        }
         return movieRepository.save(movie) != null;
     }
 
