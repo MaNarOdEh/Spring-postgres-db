@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,11 +26,6 @@ public class MovieController {
     @PostMapping("/add")
     public void addMovie(@RequestBody Movie movie) {
         movieServices.addMovie(movie);
-    }
-
-    @PutMapping("{movieId}/update/{movie}")
-    public Movie updateProduct(@PathVariable("movieId") String movieId, @PathVariable("movie") Movie movie) {
-        throw new UnsupportedOperationException();
     }
 
     @GetMapping("{userId}")

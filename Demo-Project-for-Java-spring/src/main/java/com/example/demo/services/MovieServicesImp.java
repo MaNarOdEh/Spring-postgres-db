@@ -14,6 +14,7 @@ import com.example.demo.exceptions.MovieNotFoundException;
 import com.example.demo.model.Movie;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,6 +28,7 @@ import com.example.demo.services.servicesInterface.MovieServices;
 public class MovieServicesImp implements MovieServices {
     @Autowired
     private MovieRepository movieRepository;
+    public static final String MOVIECHACHEKEY_STRING = "movieCache";
 
     /**
      * This method will take an movie object and try to save it.
@@ -69,6 +71,7 @@ public class MovieServicesImp implements MovieServices {
     }
 
     @Override
+    @Cacheable(value = "fetchUserMovies", key = "#root.target.MOVIECHACHEKEY_STRING+#userId")
     public List<Movie> getUserMovie(UUID userId) {
         List<Movie> movie = movieRepository.findByPersonId(userId);
         return movie;
