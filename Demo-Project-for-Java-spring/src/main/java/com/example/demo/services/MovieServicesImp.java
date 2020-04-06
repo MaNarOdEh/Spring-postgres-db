@@ -25,13 +25,14 @@ public class MovieServicesImp implements MovieServices {
     /**
      * This method will take an movie object and try to save it.
      * 
-     * Throw ExceededTheLimitForAddingMoviesToFavorites exception when the user have
-     * more than 5 fav movie
-     * 
-     * Throw MovieEntityFound when the movieId is already Found
-     * 
      * @param Movie
      * @return boolean
+     * 
+     * @throws ExceededTheLimitForAddingMoviesToFavorites exception when the user
+     *                                                    have more than 5 fav movie
+     * 
+     * @throws MovieEntityFound                           when the movieId is
+     *                                                    already Found
      */
     @Override
     public boolean addMovie(Movie movie) {

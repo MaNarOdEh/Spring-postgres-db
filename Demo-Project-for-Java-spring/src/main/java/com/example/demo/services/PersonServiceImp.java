@@ -2,10 +2,12 @@ package com.example.demo.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import com.example.demo.exceptions.PersonNotFoundException;
 import com.example.demo.exceptions.PersonUserNameFound;
 import com.example.demo.model.Person;
 import com.example.demo.repository.PersonRepository;
@@ -41,10 +43,9 @@ public class PersonServiceImp implements UserDetailsService, PersonServices {
     }
 
     /**
-     * this method will throw personUserNameFound when the user try to sign up with
-     * a used userName
      * 
      * @param person
+     * @throws personUserNameFound when the user try to signup with a used userName
      */
     @Override
     public void save(Person person) {
@@ -72,7 +73,11 @@ public class PersonServiceImp implements UserDetailsService, PersonServices {
 
     @Override
     public Person findById(UUID id) {
-        return this.personRepository.findById(id).orElse(null);
+        Optional<Person> person = this.personRepository.findById(id);
+        if (!person.isPresent()) {
+            throw new PersonNotFoundException(id.toString());
+        }
+        return person.orElse(null);
     }
 
     @Override
