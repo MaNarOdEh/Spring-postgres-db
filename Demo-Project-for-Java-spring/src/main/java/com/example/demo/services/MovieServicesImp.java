@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -13,7 +14,12 @@ import com.example.demo.exceptions.MovieNotFoundException;
 import com.example.demo.model.Movie;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 import com.example.demo.repository.MovieRepository;
 import com.example.demo.services.servicesInterface.MovieServices;
 
@@ -66,6 +72,17 @@ public class MovieServicesImp implements MovieServices {
     public List<Movie> getUserMovie(UUID userId) {
         List<Movie> movie = movieRepository.findByPersonId(userId);
         return movie;
+    }
+
+    public List<Movie> getUserMovies(UUID userId, Integer pageNo, Integer pageSize, String sortBy) {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
+        Page<Movie> pagedResult = movieRepository.findByPersonId(userId, paging);
+        if (pagedResult.hasContent()) {
+            return pagedResult.getContent();
+        } else {
+            return new ArrayList<Movie>();
+        }
+
     }
 
     @Override
