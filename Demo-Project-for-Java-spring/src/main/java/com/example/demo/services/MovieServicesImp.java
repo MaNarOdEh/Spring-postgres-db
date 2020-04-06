@@ -40,6 +40,7 @@ public class MovieServicesImp implements MovieServices {
             throw new ExceededTheLimitForAddingMoviesToFavorites(movie.getMovieId());
         }
         Optional<Movie> result = mvoies.stream().filter(mo -> movie.getMovieId().equals(mo.getMovieId())).findAny();
+
         if (result.isPresent()) {
             throw new MovieEntityFound(movie.getMovieId());
         }

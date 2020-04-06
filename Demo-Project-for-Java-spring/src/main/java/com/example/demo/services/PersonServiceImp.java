@@ -3,8 +3,10 @@ package com.example.demo.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import com.example.demo.exceptions.PersonUserNameFound;
 import com.example.demo.model.Person;
 import com.example.demo.repository.PersonRepository;
 import com.example.demo.services.servicesInterface.PersonServices;
@@ -38,9 +40,20 @@ public class PersonServiceImp implements UserDetailsService, PersonServices {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * this method will throw personUserNameFound when the user try to sign up with
+     * a used userName
+     * 
+     * @param person
+     */
     @Override
     public void save(Person person) {
         person.setUserPassword(passwordEncoder().encode(person.getPassword()));
+        List<Person> persons = findAll();
+        Predicate<Person> predicate = p -> p.getUserName().equals(person.getUserName());
+        if (persons.stream().anyMatch(predicate)) {
+            throw new PersonUserNameFound(person.getUserName());
+        }
         this.personRepository.save(person);
     }
 
