@@ -12,6 +12,8 @@ public interface PersonServices {
 
     public void deleteById(UUID id);
 
+    public void updatePerson(Person person);
+
     public Person findById(UUID id);
 
     public List<String> getAllPersonNames();

@@ -31,6 +31,8 @@ public class EhCacheConfig extends CachingConfigurerSupport {
         net.sf.ehcache.config.Configuration config = new net.sf.ehcache.config.Configuration();
         config.addCache(getCacheConfiguration("cache-movie", "LRU", 1000, 10));
         config.addCache(getCacheConfiguration("cache-person", "LRU", 1000, 10));
+        config.addCache(getCacheConfiguration("cache-movie-page", "LRU", 1000, 10));
+        config.addCache(getCacheConfiguration("userInfo", "LRU", 1000, 10));
         return net.sf.ehcache.CacheManager.newInstance(config);
     }
 

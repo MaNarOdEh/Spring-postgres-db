@@ -14,6 +14,7 @@ import com.example.demo.exceptions.MovieNotFoundException;
 import com.example.demo.model.Movie;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
@@ -78,6 +79,8 @@ public class MovieServicesImp implements MovieServices {
         return movie;
     }
 
+    @Override
+    @CacheEvict(value = "cache-movie-page", key = "'moviepage'+#pageNo+#pageSize+#sortBy", allEntries = true)
     public List<Movie> getUserMovies(UUID userId, Integer pageNo, Integer pageSize, String sortBy) {
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
         Page<Movie> pagedResult = movieRepository.findByPersonId(userId, paging);

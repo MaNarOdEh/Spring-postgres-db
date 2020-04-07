@@ -49,7 +49,7 @@ public class PersonController {
     @PutMapping("/{id}")
     public void updateUser(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody Person user) {
         user.setId(id);
-        this.personService.save(user);
+        this.personService.updatePerson(user);
     }
 
     @GetMapping("/getSortedPersonName")

@@ -14,6 +14,7 @@ import com.example.demo.repository.PersonRepository;
 import com.example.demo.services.servicesInterface.PersonServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -90,6 +91,19 @@ public class PersonServiceImp implements UserDetailsService, PersonServices {
     public List<Person> getAllUserThatDoesNotHaveAnyFavouriteMovie() {
         List<Person> person = findAll();
         return person.stream().filter(p -> p.getMovies().size() == 0).collect(Collectors.toList());
+    }
+
+    @Override
+    @CachePut(value = "userInfo", key = "'personDetails'#person.getId()")
+    public void updatePerson(Person person) {
+        person.setUserPassword(passwordEncoder().encode(person.getPassword()));
+        List<Person> persons = findAll();
+        Predicate<Person> predicate = p -> p.getUserName().equals(person.getUserName());
+        if (!persons.stream().anyMatch(predicate)) {
+            throw new PersonNotFoundException(person.getUserName());
+        }
+        this.personRepository.save(person);
+
     }
 
 }

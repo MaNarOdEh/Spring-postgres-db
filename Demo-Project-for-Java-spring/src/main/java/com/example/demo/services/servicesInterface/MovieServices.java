@@ -16,4 +16,6 @@ public interface MovieServices {
     public List<Movie> getUserMovie(UUID userId);
 
     public List<Movie> getMoviesStartWithChars(UUID userId, Character ch);
+
+    public List<Movie> getUserMovies(UUID userId, Integer pageNo, Integer pageSize, String sortBy);
 }
