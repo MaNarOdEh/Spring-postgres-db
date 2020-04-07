@@ -73,6 +73,7 @@ public class PersonServiceImp implements UserDetailsService, PersonServices {
     }
 
     @Override
+    @CachePut(value = "userInfo", key = "'personDetails'+#id.toString()")
     public Person findById(UUID id) {
         Optional<Person> person = this.personRepository.findById(id);
         if (!person.isPresent()) {
@@ -94,7 +95,7 @@ public class PersonServiceImp implements UserDetailsService, PersonServices {
     }
 
     @Override
-    @CachePut(value = "userInfo", key = "'personDetails'#person.getId()")
+    @CachePut(value = "userInfo", key = "'personDetails'+#person.getId().toString()")
     public void updatePerson(Person person) {
         person.setUserPassword(passwordEncoder().encode(person.getPassword()));
         List<Person> persons = findAll();

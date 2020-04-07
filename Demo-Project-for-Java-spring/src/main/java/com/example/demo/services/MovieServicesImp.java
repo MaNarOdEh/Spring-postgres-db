@@ -74,7 +74,6 @@ public class MovieServicesImp implements MovieServices {
     @Override
     @Cacheable(value = "cache-movie", key = "#root.target.MOVIECHACHEKEY_STRING+#userId")
     public List<Movie> getUserMovie(UUID userId) {
-        System.out.println(userId + "  " + " userMovie");
         List<Movie> movie = movieRepository.findByPersonId(userId);
         return movie;
     }
