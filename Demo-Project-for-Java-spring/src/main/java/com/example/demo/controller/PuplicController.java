@@ -32,7 +32,6 @@ public class PuplicController {
     }
 
     @GetMapping("/cashing")
-    @Cacheable("try")
     public String tryUsingCashing() {
         try {
             System.out.println("Going to sleep for 5 Secs.. to simulate backend call.");

@@ -59,7 +59,6 @@ public class PersonServiceImp implements UserDetailsService, PersonServices {
     }
 
     @Override
-    @Cacheable("fetchPerson")
     public List<Person> findAll() {
         List<Person> users = new ArrayList<>();
         this.personRepository.findAll().forEach(users::add);
