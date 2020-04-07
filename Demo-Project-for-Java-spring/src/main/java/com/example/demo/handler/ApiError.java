@@ -11,7 +11,6 @@ public class ApiError {
     private String message;
     private HttpStatus status;
     private String debugMessage;
-    private List<ApiSubError> subErrors;
 
     public ApiError() {
         this.message = "Error";

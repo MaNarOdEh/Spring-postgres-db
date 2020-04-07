@@ -18,8 +18,11 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.cache.annotation.Cacheable;
 
 import lombok.Data;
 
@@ -27,6 +30,8 @@ import lombok.Data;
 @Table(name = "movie", schema = "public")
 @Data
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Movie implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
