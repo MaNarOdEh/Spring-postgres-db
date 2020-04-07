@@ -31,4 +31,9 @@ public class ExceptionHandleContoller {
 
     }
 
+    @ExceptionHandler
+    public String handleException(Exception exception) {
+        return new ApiError(exception.getMessage()).getMessage();
+    }
+
 }
