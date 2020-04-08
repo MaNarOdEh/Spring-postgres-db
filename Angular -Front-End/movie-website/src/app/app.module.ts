@@ -11,6 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from "@angular/material/icon"; 
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import { HttpClientModule } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -26,6 +29,8 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatIconModule,
     MatToolbarModule,
+    MatCardModule,
+    MatGridListModule,
     HttpClientModule,
     FormsModule
     

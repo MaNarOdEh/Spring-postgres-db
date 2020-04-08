@@ -8,16 +8,18 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private myrouter:Router) { }
+  constructor(private _router:Router) { }
 
   ngOnInit(): void {
   }
   naviagteToMostPopular(){
+    this._router.navigate(['/mostPopularity']);
   }
   naviagteToMostRating(){
+    this._router.navigate(['/topRated']);
   }
   showLogin(){
-    this.myrouter.navigate(['/login']);
+    this._router.navigate(['/login']);
   }
 
 }

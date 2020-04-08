@@ -1,1 +1,19 @@
-<p>movie-list works!</p>
+<h3>{{title}}</h3>
+<mat-grid-list cols="4" rowHeight="500px">
+    <mat-grid-tile  *ngFor="let movie of movieList">
+      <mat-card class="example-card">
+        <mat-card-header>
+          {{movie.title}}
+        </mat-card-header>
+        <img mat-card-image src="https://image.tmdb.org/t/p/w300//{{movie.poster_path}}" 
+         onerror="this.src='https://image.tmdb.org/t/p/w300///20djTLqppfBx5WYA67Y300S6aPD.jpg'"
+        alt="https://image.tmdb.org/t/p/w300///20djTLqppfBx5WYA67Y300S6aPD.jpg"
+        >
+        <mat-card-actions>
+          <button  class="btn-details"
+           (click)=naviagteToDetails(movie)>
+           More Details
+          </button>
+        </mat-card-actions>
+      </mat-card>
+</mat-grid-tile>

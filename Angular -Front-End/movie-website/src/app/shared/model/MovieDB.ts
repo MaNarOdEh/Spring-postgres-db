@@ -6,7 +6,7 @@ export class MovieDB{
     private static movieDB:MovieDB;
     private constructor(){
         this.BASEURL  = "https://api.themoviedb.org/3/";
-        this.APIKEY   = "";
+        this.APIKEY   = "bdf04a42330733fdfeb4cbc860ab26d0";
         this.REGION   = "US";
         this.LANGUAGE = "en-US";
     }
