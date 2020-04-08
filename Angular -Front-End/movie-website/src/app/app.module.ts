@@ -8,7 +8,6 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
-import { MovieCardComponent } from './component/movie-card/movie-card.component';
 
 @NgModule({
   declarations: [
@@ -17,9 +16,7 @@ import { MovieCardComponent } from './component/movie-card/movie-card.component'
     FooterComponent,
     LoginComponent,
     SignupComponent,
-    MovieListComponent,
-    MovieCardComponent
-  ],
+    MovieListComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule
