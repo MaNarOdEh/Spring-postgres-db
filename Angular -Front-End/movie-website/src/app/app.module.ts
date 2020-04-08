@@ -16,7 +16,7 @@ import { MovieListComponent } from './movie-list/movie-list.component';
     FooterComponent,
     LoginComponent,
     SignupComponent,
-    MovieListComponent  ],
+    MovieListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule
