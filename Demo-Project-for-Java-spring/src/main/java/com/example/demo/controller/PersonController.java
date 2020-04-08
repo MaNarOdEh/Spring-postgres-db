@@ -38,8 +38,7 @@ public class PersonController {
 
     @GetMapping("/userId/{id}")
     public Person getUserById(@PathVariable("id") UUID id) {
-        Person person = this.personService.findById(id);
-        return person;
+        return this.personService.findById(id);
     }
 
     @DeleteMapping({ "/{id}" })

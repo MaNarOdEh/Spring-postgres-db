@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Person;
 import com.example.demo.model.SignInRequest;
 import com.example.demo.security.JwtResponse;
 import com.example.demo.security.JwtTokenUtil;
@@ -39,7 +40,7 @@ public class AuthController {
      *         case when the user credential is not correct it will return
      *         unAuthorized message..
      */
-    @PostMapping(value = { "", "/" })
+    @PostMapping(value = { "", "/signin" })
     public JwtResponse signIn(@RequestBody SignInRequest signInRequest) {
 
         final Authentication authentication = authenticationManager.authenticate(
@@ -58,6 +59,10 @@ public class AuthController {
         return "hey!";
     }
 
+    @PostMapping(value = "/signup")
+    public void signup(@RequestBody SignInRequest signInRequest) {
+        this.personService.save(new Person(signInRequest.getUserName(), signInRequest.getPassword()));
+    }
     /*
      * @ExceptionHandler public String handleException(Exception exp) { return new
      * String("This Message will appear intstead of messag" + exp.getMessage() +

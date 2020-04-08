@@ -41,7 +41,7 @@ public class Person implements UserDetails {
     @JsonIgnore
     private List<Movie> movies = new ArrayList<>();
 
-    public Person(@JsonProperty("userName") String userName, @JsonProperty("password") String password) {
+    public Person(@JsonProperty("username") String userName, @JsonProperty("password") String password) {
         this();
         this.userName = userName;
         this.userPassword = password;
