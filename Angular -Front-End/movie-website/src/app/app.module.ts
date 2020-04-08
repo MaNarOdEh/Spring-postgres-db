@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from "@angular/material/icon"; 
@@ -18,7 +17,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    SignupComponent,
     MovieListComponent],
   imports: [
     BrowserModule,
