@@ -1,5 +1,4 @@
-import { AuthInterceptor } from './shared/service/_helpers/auth-interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthService } from './shared/service/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +10,8 @@ import { MovieListComponent } from './movie-list/movie-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from "@angular/material/icon"; 
 import {MatToolbarModule} from '@angular/material/toolbar'; 
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,13 +26,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     BrowserAnimationsModule,
     MatIconModule,
     MatToolbarModule,
+    HttpClientModule,
+    FormsModule
     
   ],
-  providers: [{
-    provide:HTTP_INTERCEPTORS,
-    useClass:AuthInterceptor,
-    multi:true
-  }],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

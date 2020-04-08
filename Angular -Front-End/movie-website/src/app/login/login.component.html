@@ -9,10 +9,10 @@
   
       <!-- Login Form -->
       <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-        <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
-        <input type="submit"  value="Log In" (click) = "login()">
-        <input type="submit" value="Sign up" (click) = "signup()">
+        <input type="text" [(ngModel)]="username" id="login" class="fadeIn second" name="login" placeholder="login">
+        <input type="password" [(ngModel)]="password" id="password" class="fadeIn third" name="login" placeholder="password">
+        <input type="button"  value="Log In" (click) = "login()">
+        <input type="button" value="Sign up" (click) = "signup()">
       </form>
   
       <!-- Remind Passowrd -->
