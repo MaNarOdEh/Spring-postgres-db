@@ -19,7 +19,7 @@
     text-align: center;
     position: relative;
 }
-header button{
+header button.moviesType{
     background-color: white;
     color:#3f51b5;
     width:200px;
@@ -51,4 +51,7 @@ header button{
 .example-button-row a {
   margin-right: 8px;
   border:50%;
+}
+.example-icon{
+    cursor: pointer;
 }
