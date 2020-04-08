@@ -1,1 +1,23 @@
-<p>header works!</p>
+<header>
+    <mat-toolbar color="primary" >
+        <mat-toolbar-row class="fixed-header" color="primary">
+            <mat-icon class="example-icon" aria-hidden="false" aria-label="Example games icon">games</mat-icon>
+           <span>Cinema Box</span>
+           <span class="example-spacer"></span>
+           <mat-icon class="example-icon" aria-hidden="false" aria-label="Example favorite icon">favorite</mat-icon>
+           <mat-icon class="example-icon" aria-hidden="false" aria-label="Example account_circle icon">account_circle</mat-icon>
+        </mat-toolbar-row>
+        <mat-toolbar-row class="n-fixed-header">
+            <span>Read about the most popular and watched movies!</span><br>
+            <div class="verical-line"></div>
+            <div>
+                <p>From our website you can see all the most popularity & rating films</p>
+                <span>Enjoy Watching!</span>
+                <div>
+                    <button (click)=naviagteToMostPopular()  mat-stroked-button >Most Popularity</button>
+                    <button mat-stroked-button  (click)=naviagteToMostRating()>Most rating</button>
+                </div>
+            </div>
+        </mat-toolbar-row>
+</mat-toolbar>
+ </header>
