@@ -1,7 +1,7 @@
 import { ReadMovieService } from './../shared/service/read-movie.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-movie-list',
@@ -13,21 +13,22 @@ export class MovieListComponent implements OnInit {
   title:string;
   movieList:Observable<any>;
   movieType="top_rated";
-  //popular
 
-  constructor(private myrouter:Router,private movieService:ReadMovieService) { 
-    this.title = "Most Rated Movie";
+  constructor(private _router:Router,private _movieService:ReadMovieService
+    ,private _route:ActivatedRoute) { 
+    this.title = this._route.snapshot.data['title'];
+    this.movieType = this._route.snapshot.data['movieTypes'];
   }
 
   ngOnInit(): void {
-    this.movieService.getMovies(this.movieType).subscribe(
+    this._movieService.getMovies(this.movieType).subscribe(
       res=>{
           this.movieList = res.results;
       });
 
   }
   naviagteToDetails(movie){
-    this.myrouter.navigate(['/details',movie.id]);
+    this._router.navigate(['/details',movie.id]);
   }
 
 

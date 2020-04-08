@@ -6,8 +6,20 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path:'mostPopularity', component: MovieListComponent},
-  {path:'topRated',component:MovieListComponent}
+  { path:'movies/mostPopular', component: MovieListComponent,data : 
+    {
+      movieTypes : 'popular',
+      title :"Most Popular Movie"
+    }
+  },
+  { path:'movies/topRating',component:MovieListComponent,data:  
+    {
+      movieTypes : 'top_rated',
+      title:"Most Rated Movie"
+    }
+  },
+  { path:'**',redirectTo: 'movies/topRating'},
+
 
 ];
 

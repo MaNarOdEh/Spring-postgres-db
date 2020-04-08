@@ -13,10 +13,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   naviagteToMostPopular(){
-    this._router.navigate(['/mostPopularity']);
+    this._router.navigate(['/movies/mostPopular']);
   }
   naviagteToMostRating(){
-    this._router.navigate(['/topRated']);
+    this._router.navigate(['/movies/topRating']);
   }
   showLogin(){
     this._router.navigate(['/login']);
