@@ -1,6 +1,6 @@
 package com.example.demo.handler;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
 
@@ -9,41 +9,64 @@ import lombok.Data;
 @Data
 public class ApiError {
     private String message;
-    private HttpStatus status;
+    private String timestamp;
     private String debugMessage;
+    private HttpStatus httpStatus;
 
     public ApiError() {
-        this.message = "Error";
-    }
-
-    ApiError(HttpStatus status) {
-        this();
-        this.status = status;
-    }
-
-    ApiError(HttpStatus status, Throwable ex) {
-        this();
-        this.status = status;
-        this.message = "Unexpected error";
-        this.debugMessage = ex.getLocalizedMessage();
-    }
-
-    ApiError(HttpStatus status, String message, Throwable ex) {
-        this();
-        this.status = status;
-        this.message = message;
-        this.debugMessage = ex.getLocalizedMessage();
+        this.timestamp = LocalDateTime.now() + "";
     }
 
     public ApiError(String message) {
+        this();
         this.message = message;
+    }
+
+    public ApiError(String message, Throwable throwable) {
+        this();
+        this.message = message;
+        this.debugMessage = throwable.getLocalizedMessage();
+    }
+
+    public ApiError(String message, HttpStatus httpStatus) {
+        this();
+        this.message = message;
+        this.httpStatus = httpStatus;
     }
 
     /**
      * @return the message
      */
     public String getMessage() {
-        return "Error :" + message;
+        return message;
+    }
+
+    /**
+     * @return the httpStatus
+     */
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
+    }
+
+    /**
+     * @param httpStatus the httpStatus to set
+     */
+    public void setHttpStatus(HttpStatus httpStatus) {
+        this.httpStatus = httpStatus;
+    }
+
+    /**
+     * @return the timestamp
+     */
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    /**
+     * @param timestamp the timestamp to set
+     */
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
 }

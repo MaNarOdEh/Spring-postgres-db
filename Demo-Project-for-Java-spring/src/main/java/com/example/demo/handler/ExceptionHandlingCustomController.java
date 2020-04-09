@@ -5,6 +5,7 @@ import com.example.demo.exceptions.MovieNotFoundException;
 import com.example.demo.exceptions.PersonNotFoundException;
 import com.example.demo.exceptions.PersonUserNameFound;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.zalando.problem.spring.web.advice.ProblemHandling;
@@ -28,8 +29,9 @@ public class ExceptionHandlingCustomController implements ProblemHandling {
     }
 
     @ExceptionHandler
-    public String handlePersonNotFoundException(PersonNotFoundException exception) {
-        return new ApiError(exception.getMessage()).getMessage();
+    public ApiError handlePersonNotFoundException(PersonNotFoundException exception) {
+        ApiError apiError = new ApiError(exception.getMessage(), HttpStatus.NOT_FOUND);
+        return apiError;
     }
 
 }

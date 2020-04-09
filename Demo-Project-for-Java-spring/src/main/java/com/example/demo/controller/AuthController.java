@@ -12,6 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,6 +42,7 @@ public class AuthController {
      *         unAuthorized message..
      */
     @PostMapping(value = { "", "/signin" })
+    @CrossOrigin(origins = "http://localhost:4200")
     public JwtResponse signIn(@RequestBody SignInRequest signInRequest) {
 
         final Authentication authentication = authenticationManager.authenticate(
@@ -60,6 +62,7 @@ public class AuthController {
     }
 
     @PostMapping(value = "/signup")
+    @CrossOrigin(origins = "http://localhost:4200")
     public void signup(@RequestBody SignInRequest signInRequest) {
         this.personService.save(new Person(signInRequest.getUserName(), signInRequest.getPassword()));
     }

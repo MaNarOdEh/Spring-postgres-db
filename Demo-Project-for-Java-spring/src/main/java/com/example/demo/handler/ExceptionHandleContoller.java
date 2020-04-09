@@ -26,14 +26,16 @@ public class ExceptionHandleContoller {
     }
 
     @ExceptionHandler
-    public String handleUserNotFoundException(UsernameNotFoundException exception) {
-        return new ApiError(exception.getMessage()).getMessage();
+    public ApiError handleUserNotFoundException(UsernameNotFoundException exception) {
+        ApiError apiError = new ApiError(exception.getMessage(), exception);
+        return apiError;
 
     }
 
     @ExceptionHandler
-    public String handleException(Exception exception) {
-        return new ApiError(exception.getMessage()).getMessage();
+    public ApiError handleException(Exception exception) {
+        ApiError apiError = new ApiError(exception.getMessage());
+        return apiError;
     }
 
 }
