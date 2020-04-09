@@ -30,6 +30,9 @@ export class MovieListComponent implements OnInit {
   naviagteToDetails(movie){
     this._router.navigate(['/details',movie.id]);
   }
+  addMovie(movie){
+    console.log(movie.id);
+  }
 
 
 }
