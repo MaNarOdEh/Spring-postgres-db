@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.UUID;
 
 import com.example.demo.model.Movie;
+import com.example.demo.model.Person;
 import com.example.demo.services.MovieServicesImp;
+import com.example.demo.services.PersonServiceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +25,22 @@ public class MovieController {
 
     @Autowired
     private MovieServicesImp movieServices;
+    @Autowired
+    private PersonServiceImp personServiceImp;
+
+    @PostMapping("/addMovie")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public void addMoviewithId(@RequestBody Movie movie) {
+        movieServices.addMovie(movie);
+    }
 
     @PostMapping("/add")
+    @CrossOrigin(origins = "http://localhost:4200")
     public void addMovie(@RequestBody Movie movie) {
+        System.out.println(movie.getPerson().getUserName());
+        Person person = (Person) personServiceImp.loadUserByUsername(movie.getPerson().getUserName());
+        System.out.println(person.getUserName() + "  " + person.getId());
+        movie.setPerson(person);
         movieServices.addMovie(movie);
     }
 
