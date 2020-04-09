@@ -11,6 +11,7 @@ import com.example.demo.services.PersonServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,6 +69,7 @@ public class PersonController {
     @CrossOrigin(origins = "http://localhost:4200")
     public String getPersonByUserName(@PathVariable("username") String userName) {
         UserDetails userDetails = this.personService.loadUserByUsername(userName);
+        System.out.println(((Person) userDetails).getId().toString());
         return userDetails != null ? ((Person) userDetails).getId().toString() : null;
     }
 
