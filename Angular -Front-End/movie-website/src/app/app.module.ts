@@ -1,21 +1,22 @@
-import { AuthService } from './shared/service/auth.service';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { LoginComponent } from './login/login.component';
-import { MovieListComponent } from './movie-list/movie-list.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from "@angular/material/icon"; 
-import {MatToolbarModule} from '@angular/material/toolbar'; 
-import { HttpClientModule } from '@angular/common/http';
-import { MatCardModule } from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
+import { AuthService } from "./shared/service/auth.service";
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { HeaderComponent } from "./header/header.component";
+import { FooterComponent } from "./footer/footer.component";
+import { LoginComponent } from "./login/login.component";
+import { MovieListComponent } from "./movie-list/movie-list.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatIconModule } from "@angular/material/icon";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { MatCardModule } from "@angular/material/card";
+import { MatGridListModule } from "@angular/material/grid-list";
 
-import { FormsModule } from '@angular/forms';
-import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { FormsModule } from "@angular/forms";
+import { MovieDetailsComponent } from "./movie-details/movie-details.component";
+import { AuthInterceptor } from "./shared/service/_helpers/auth-interceptor";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
     FooterComponent,
     LoginComponent,
     MovieListComponent,
-    MovieDetailsComponent],
+    MovieDetailsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -34,10 +36,12 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
     MatCardModule,
     MatGridListModule,
     HttpClientModule,
-    FormsModule
-    
+    FormsModule,
   ],
-  providers: [AuthService],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
