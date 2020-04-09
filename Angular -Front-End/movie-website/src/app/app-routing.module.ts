@@ -1,3 +1,4 @@
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
@@ -18,8 +19,8 @@ const routes: Routes = [
       title:"Most Rated Movie"
     }
   },
-  { path:'**',redirectTo: 'movies/topRating'},
-
+  {path:'details/:id',component:MovieDetailsComponent},
+  { path:'**',redirectTo: 'movies/topRating'}
 
 ];
 

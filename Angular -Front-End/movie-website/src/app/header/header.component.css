@@ -26,6 +26,7 @@ header button.moviesType{
     border-radius:100px;
     font-size: 12px;
     margin: 8px;
+    padding:8px;
 }
 
 .n-fixed-header span,p{
