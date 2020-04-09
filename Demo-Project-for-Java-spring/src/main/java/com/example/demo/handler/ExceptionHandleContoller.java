@@ -32,10 +32,9 @@ public class ExceptionHandleContoller {
 
     }
 
-    @ExceptionHandler
-    public ApiError handleException(Exception exception) {
-        ApiError apiError = new ApiError(exception.getMessage());
-        return apiError;
-    }
+    /*
+     * @ExceptionHandler public ApiError handleException(Exception exception) {
+     * ApiError apiError = new ApiError(exception.getMessage()); return apiError; }
+     */
 
 }

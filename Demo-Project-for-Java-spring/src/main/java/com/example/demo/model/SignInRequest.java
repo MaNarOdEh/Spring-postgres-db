@@ -9,7 +9,7 @@ public class SignInRequest {
     public SignInRequest() {
     }
 
-    public SignInRequest(@JsonProperty("userName") String name, @JsonProperty("password") String password) {
+    public SignInRequest(@JsonProperty("username") String name, @JsonProperty("password") String password) {
         this.userName = name;
         this.password = password;
     }
