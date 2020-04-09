@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
+  error:string;
   
   constructor(private _router: Router,private _authService:AuthService,private _tokenService:TokenStorageService) { }
 
@@ -24,9 +25,11 @@ export class LoginComponent implements OnInit {
       data=>{
         this._tokenService.saveToken(data.token);
         this._tokenService.saveUser(user);
+        this.error = "";
       },
       err=>{
         console.log(err.message);
+        this.error = err.message;
       }
     );
   }
@@ -37,9 +40,11 @@ export class LoginComponent implements OnInit {
     this._authService.register(user).subscribe(
       data =>{
         console.log(data);
+        this.error = "";
       },
       err =>{
         console.log(err.message);
+        this.error = err.message;
       }
     );
   }
