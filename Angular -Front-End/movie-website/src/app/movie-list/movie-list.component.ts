@@ -1,7 +1,7 @@
-import { ReadMovieService } from './../shared/service/read-movie.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ReadMovieService } from './shared/read-movie.service';
 
 @Component({
   selector: 'app-movie-list',

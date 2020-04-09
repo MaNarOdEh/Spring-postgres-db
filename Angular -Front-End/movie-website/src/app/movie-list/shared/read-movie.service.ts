@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MovieDB } from '../model/MovieDB';
+import { MovieDB } from 'src/app/shared/model/MovieDB';
 
 @Injectable({
   providedIn: 'root'
