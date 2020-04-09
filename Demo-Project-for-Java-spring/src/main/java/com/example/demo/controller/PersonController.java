@@ -10,6 +10,7 @@ import com.example.demo.services.PersonServiceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,6 +61,12 @@ public class PersonController {
     @GetMapping("/userswithoutFavMovie")
     public List<Person> getAllUserThatDoesNotHaveAnyFavouriteMovie() {
         return this.personService.getAllUserThatDoesNotHaveAnyFavouriteMovie();
+    }
+
+    @GetMapping("/{username}")
+    public UUID getPersonByUserName(@PathVariable("username") String userName) {
+        UserDetails userDetails = this.personService.loadUserByUsername(userName);
+        return userDetails != null ? ((Person) userDetails).getId() : null;
     }
 
 }
