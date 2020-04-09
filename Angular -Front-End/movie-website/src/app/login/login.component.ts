@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
       data=>{
         this._tokenService.saveToken(data.token);
         this._tokenService.saveUser(user);
+        this._router.navigate(["movies/mostPopular"]);
         this.error = "";
       },
       err=>{
