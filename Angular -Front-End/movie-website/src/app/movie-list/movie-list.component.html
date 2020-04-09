@@ -3,6 +3,8 @@
     <mat-grid-tile  *ngFor="let movie of movieList">
       <mat-card class="example-card">
         <mat-card-header>
+          <mat-icon class="example-icon" aria-hidden="false" 
+          aria-label="Example favorite icon">favorite</mat-icon>
           {{movie.title}}
         </mat-card-header>
         <img mat-card-image src="https://image.tmdb.org/t/p/w300//{{movie.poster_path}}" 
