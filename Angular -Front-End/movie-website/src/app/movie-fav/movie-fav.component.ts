@@ -1,6 +1,5 @@
 import { DeleteMovieService } from "./../shared/service/delete-movie.service";
 import { MovieDetailsServiceService } from "./../shared/service/movie-details-service.service";
-import { Observable } from "rxjs";
 import { MovieFavService } from "./shared/movie-fav.service";
 import { Component, OnInit } from "@angular/core";
 import { Movie } from "../shared/model/Movie";
@@ -38,7 +37,6 @@ export class MovieFavComponent implements OnInit {
     if (index > -1) {
       this.movieList.splice(index, 1);
     }
-    console.log("deleted Movie:" + movie.id);
     this._movieRemove.removeMovie(movie.id).subscribe((res) => {
       console.log(res);
     });

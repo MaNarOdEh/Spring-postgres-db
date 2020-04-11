@@ -78,8 +78,6 @@ public class MovieController {
     @CrossOrigin(origins = "http://localhost:4200")
     public void deleteMovie(@PathVariable("username") String username, @PathVariable("movieid") String movieid) {
         Person person = (Person) personServiceImp.loadUserByUsername(username);
-        System.out.println(person.getId());
-        System.out.println(movieid);
         movieServices.deleteMovie(person.getId(), movieid);
     }
 

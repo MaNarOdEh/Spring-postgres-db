@@ -22,34 +22,40 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
   login(): void {
     let user = { username: this.username, password: this.password };
-    this._authService.login(user).subscribe(
-      (data) => {
-        this._tokenService.saveToken(data.token);
-        this._tokenService.saveUser(user);
-        window.location.reload();
-        this._router.navigate(["movies/mostPopular"]);
-        this.error = "";
-      },
-      (err) => {
-        console.log(err.message);
-        this.error = "Wrong User Name or Password Please Try Again!";
-      }
-    );
+    if (user.username == undefined || user.password == undefined) {
+      this.error = "All Field is Requierd!!";
+    } else {
+      this._authService.login(user).subscribe(
+        (data) => {
+          this._tokenService.saveToken(data.token);
+          this._tokenService.saveUser(user);
+          window.location.reload();
+          this._router.navigate(["movies/mostPopular"]);
+          this.error = "";
+        },
+        (err) => {
+          console.log(err.message);
+          this.error = "Wrong User Name or Password Please Try Again!";
+        }
+      );
+    }
   }
   signup(): void {
     let user = { username: this.username, password: this.password };
-    console.log(user.password);
-    console.log(user.username);
-    this._authService.register(user).subscribe(
-      (data) => {
-        console.log(data);
-        this.error = "";
-      },
-      (err) => {
-        console.log(err.message);
-        this.error =
-          "The userName is taken before \n please try with anouther user name";
-      }
-    );
+    if (user.username == undefined || user.password == undefined) {
+      this.error = "All Field is Requierd!!";
+    } else {
+      this._authService.register(user).subscribe(
+        (data) => {
+          console.log(data);
+          this.error = "";
+        },
+        (err) => {
+          console.log(err.message);
+          this.error =
+            "The userName is taken before \n please try with anouther user name";
+        }
+      );
+    }
   }
 }
