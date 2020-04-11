@@ -52,9 +52,9 @@ public class MovieController {
 
     @GetMapping("{username}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public List<Movie> getMoviesByUserName(@PathVariable("username") String username) {
+    public List<String> getMoviesId(@PathVariable("username") String username) {
         Person person = (Person) personServiceImp.loadUserByUsername(username);
-        return movieServices.getUserMovie(person.getId());
+        return movieServices.getMovieId(person.getId());
     }
 
     @GetMapping("sorted/{userId}")

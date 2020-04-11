@@ -1,0 +1,79 @@
+h3 {
+  width: 250px;
+  margin: 15px;
+  padding: 15px;
+  color: #d5d5dd;
+  border-bottom-width: 3px;
+  border-bottom-color: #3f51b5;
+  border-bottom-style: solid;
+}
+
+.example-icon {
+  width: 3px;
+  height: 3px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  color: rgb(107, 150, 241);
+  cursor: pointer;
+}
+
+.example-icon:hover {
+  color: rgb(101, 148, 252);
+}
+
+.example-card {
+  width: 200px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+app-header-component {
+  text-align: center;
+}
+
+mat-card {
+  text-align: center;
+}
+
+mat-card-title {
+  width: 100%;
+  text-align: center;
+}
+
+.btn-details {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  padding: 4px;
+}
+
+.content-film {
+  margin: 5px;
+  width: 100%;
+}
+
+mat-card-header {
+  width: 100%;
+}
+
+.btn-details,
+.btn-unFavourite {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  padding: 4px;
+}
+
+.example-icon {
+  width: 3px;
+  height: 3px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  cursor: pointer;
+  border: rgb(107, 150, 241);
+}

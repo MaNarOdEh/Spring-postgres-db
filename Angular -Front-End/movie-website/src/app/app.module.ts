@@ -14,11 +14,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatMenuModule } from "@angular/material/menu";
+import { MatButtonModule } from "@angular/material/button";
 
 import { FormsModule } from "@angular/forms";
 import { MovieDetailsComponent } from "./movie-details/movie-details.component";
 import { AuthInterceptor } from "./shared/service/_helpers/auth-interceptor";
-import { MovieFavComponent } from './movie-fav/movie-fav.component';
+import { MovieFavComponent } from "./movie-fav/movie-fav.component";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MovieFavComponent } from './movie-fav/movie-fav.component';
     HttpClientModule,
     FormsModule,
     MatMenuModule,
+    MatButtonModule,
   ],
   providers: [
     AuthService,

@@ -35,4 +35,5 @@ export class MovieListComponent implements OnInit {
   addMovie(movie) {
     this._addMovieService.addMovie(movie.id).subscribe();
   }
+  removeMovie(mvoie) {}
 }

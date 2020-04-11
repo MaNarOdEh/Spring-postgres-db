@@ -57,6 +57,11 @@ public class MovieServicesImp implements MovieServices {
         return movieRepository.save(movie) != null;
     }
 
+    public List<String> getMovieId(UUID userId) {
+        List<Movie> movies = getUserMovie(userId);
+        return movies.stream().map(movie -> movie.getMovieId()).collect(Collectors.toList());
+    }
+
     @Override
     @Transactional
     public void deleteMovie(UUID personId, String movieId) {
