@@ -4,11 +4,13 @@
       <mat-icon class="example-icon" aria-hidden="false" aria-label="Example games icon">games</mat-icon>
       <span>Cinema Box</span>
       <span class="example-spacer"></span>
-      <mat-icon (click)="showLogin()" class="example-icon" aria-hidden="false" aria-label="Example account_circle icon">
+      <mat-icon *ngIf="login==false" (click)="showLogin()" class="example-icon" aria-hidden="false"
+        aria-label="Example account_circle icon">
         account_circle
       </mat-icon>
 
-      <button class="btn_menu" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <button *ngIf="login==true" class="btn_menu" mat-icon-button [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu">
         {{name}} <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">

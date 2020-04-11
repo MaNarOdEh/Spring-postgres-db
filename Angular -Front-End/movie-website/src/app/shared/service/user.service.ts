@@ -1,9 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class UserService {
-
-  constructor() { }
+  private login = false;
+  constructor() {}
+  public getLogin() {
+    return this.login;
+  }
+  public setLogin(login: boolean) {
+    this.login = login;
+  }
 }

@@ -18,6 +18,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { FormsModule } from "@angular/forms";
 import { MovieDetailsComponent } from "./movie-details/movie-details.component";
 import { AuthInterceptor } from "./shared/service/_helpers/auth-interceptor";
+import { MovieFavComponent } from './movie-fav/movie-fav.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AuthInterceptor } from "./shared/service/_helpers/auth-interceptor";
     LoginComponent,
     MovieListComponent,
     MovieDetailsComponent,
+    MovieFavComponent,
   ],
   imports: [
     BrowserModule,

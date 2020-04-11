@@ -9,8 +9,13 @@ import { TokenStorageService } from "../shared/service/token-storage.service";
 })
 export class HeaderComponent implements OnInit {
   name: string;
+  login = true;
+
   constructor(private _router: Router, private token: TokenStorageService) {
-    this.name = token.getUser().username;
+    this.name = token.getUser() == null ? undefined : token.getUser().username;
+    if (this.name == undefined) {
+      this.login = false;
+    }
   }
 
   ngOnInit(): void {}
@@ -26,6 +31,6 @@ export class HeaderComponent implements OnInit {
   signOut(): void {
     this.name = "";
     this.token.signOut();
-    console.log(this.token.getUser().username);
+    this.login = false;
   }
 }

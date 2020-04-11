@@ -2,7 +2,6 @@ import { TokenStorageService } from "./../shared/service/token-storage.service";
 import { AuthService } from "./../shared/service/auth.service";
 import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
-import { connectableObservableDescriptor } from "rxjs/internal/observable/ConnectableObservable";
 
 @Component({
   selector: "app-login",
@@ -27,6 +26,7 @@ export class LoginComponent implements OnInit {
       (data) => {
         this._tokenService.saveToken(data.token);
         this._tokenService.saveUser(user);
+        window.location.reload();
         this._router.navigate(["movies/mostPopular"]);
         this.error = "";
       },
