@@ -1,1 +1,7 @@
 <p>movie-fav works!</p>
+<div *ngFor="let movie of movieList">
+  <div>movie Id: {{movie.movieId}}</div>
+  <p>person Id: {{movie.person.id}}</p>
+  <p>movie id: {{movie.id}}</p>
+</div>
+<p>End</p>
