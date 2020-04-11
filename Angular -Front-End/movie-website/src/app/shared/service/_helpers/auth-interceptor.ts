@@ -30,7 +30,6 @@ export class AuthInterceptor implements HttpInterceptor {
         headers: request.headers.set(TOKEN_HEADER_KEY, "Bearer " + token),
       });
     }
-    console.log("yeh it's coming here!!");
     return next.handle(authReq).pipe(
       catchError((error) => {
         //if the error is an authentication Error

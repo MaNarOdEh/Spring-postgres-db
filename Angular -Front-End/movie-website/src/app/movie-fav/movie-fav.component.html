@@ -3,7 +3,7 @@
   <mat-grid-tile *ngFor="let movie of movieList">
     <mat-card class="example-card">
       <mat-icon class="example-icon" aria-hidden="false" aria-label="Example favorite icon" (click)=removeMovie(movie)>
-        favorite</mat-icon>
+        restore_from_trash</mat-icon>
       <mat-card-header>
         {{movie.title}}
       </mat-card-header>

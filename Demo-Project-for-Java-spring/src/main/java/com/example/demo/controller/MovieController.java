@@ -74,6 +74,15 @@ public class MovieController {
         movieServices.deleteMovie(movie.getPerson().getId(), movie.getMovieId());
     }
 
+    @DeleteMapping("/{username}/{movieid}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public void deleteMovie(@PathVariable("username") String username, @PathVariable("movieid") String movieid) {
+        Person person = (Person) personServiceImp.loadUserByUsername(username);
+        System.out.println(person.getId());
+        System.out.println(movieid);
+        movieServices.deleteMovie(person.getId(), movieid);
+    }
+
     /**
      * This method will take userId & movieId and try to delete the row in DB that
      * have the same userId & movieId it will Throw :

@@ -67,13 +67,3 @@ mat-card-header {
   display: block;
   padding: 4px;
 }
-
-.example-icon {
-  width: 3px;
-  height: 3px;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  cursor: pointer;
-  border: rgb(107, 150, 241);
-}

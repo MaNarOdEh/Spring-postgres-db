@@ -3,9 +3,7 @@ import { HttpHeaders, HttpClient } from "@angular/common/http";
 import { TokenStorageService } from "src/app/shared/service/token-storage.service";
 import { Observable } from "rxjs";
 const FAV_MOVIE_API = "http://localhost:8080/api/favMovie/";
-const httpOptions = {
-  headers: new HttpHeaders({ "content-Type": "application/json" }),
-};
+
 @Injectable({
   providedIn: "root",
 })

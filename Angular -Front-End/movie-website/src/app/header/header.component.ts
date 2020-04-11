@@ -35,5 +35,6 @@ export class HeaderComponent implements OnInit {
     this.name = "";
     this.token.signOut();
     this.login = false;
+    this._router.navigate(["/movies/mostPopular"]);
   }
 }
