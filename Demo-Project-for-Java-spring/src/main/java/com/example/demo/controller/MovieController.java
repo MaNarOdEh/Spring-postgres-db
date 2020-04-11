@@ -49,6 +49,12 @@ public class MovieController {
         return movieServices.getUserMovie(userId);
     }
 
+    @GetMapping("{username}")
+    public List<Movie> getMoviesByUserName(@PathVariable("username") String username) {
+        Person person = (Person) personServiceImp.loadUserByUsername(username);
+        return movieServices.getUserMovie(person.getId());
+    }
+
     @GetMapping("sorted/{userId}")
     public List<Movie> getMovies(@RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "10") Integer pageSize, @RequestParam(defaultValue = "id") String sortBy,
