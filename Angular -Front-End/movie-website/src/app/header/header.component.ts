@@ -25,6 +25,9 @@ export class HeaderComponent implements OnInit {
   naviagteToMostRating() {
     this._router.navigate(["/movies/topRating"]);
   }
+  naviagteToFavoriteMovie() {
+    this._router.navigate(["/movie/favourite"]);
+  }
   showLogin() {
     this._router.navigate(["/login"]);
   }
