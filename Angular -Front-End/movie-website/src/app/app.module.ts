@@ -15,6 +15,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
 
 import { FormsModule } from "@angular/forms";
 import { MovieDetailsComponent } from "./movie-details/movie-details.component";
@@ -42,6 +43,7 @@ import { MovieFavComponent } from "./movie-fav/movie-fav.component";
     HttpClientModule,
     FormsModule,
     MatMenuModule,
+    MatDialogModule,
     MatButtonModule,
   ],
   providers: [
