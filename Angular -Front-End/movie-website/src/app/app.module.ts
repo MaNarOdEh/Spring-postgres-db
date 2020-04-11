@@ -13,6 +13,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
+import { MatMenuModule } from "@angular/material/menu";
 
 import { FormsModule } from "@angular/forms";
 import { MovieDetailsComponent } from "./movie-details/movie-details.component";
@@ -37,6 +38,7 @@ import { AuthInterceptor } from "./shared/service/_helpers/auth-interceptor";
     MatGridListModule,
     HttpClientModule,
     FormsModule,
+    MatMenuModule,
   ],
   providers: [
     AuthService,

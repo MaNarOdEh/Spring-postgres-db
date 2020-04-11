@@ -1,27 +1,42 @@
 <header>
-    <mat-toolbar color="primary" >
-        <mat-toolbar-row class="fixed-header" color="primary">
-            <mat-icon class="example-icon" aria-hidden="false" aria-label="Example games icon">games</mat-icon>
-           <span>Cinema Box</span>
-           <span class="example-spacer"></span>
-           <mat-icon class="example-icon" aria-hidden="false" aria-label="Example favorite icon">favorite</mat-icon>
-           <mat-icon  (click) = "showLogin()"
-           class="example-icon" aria-hidden="false" 
-           aria-label="Example account_circle icon">
-           account_circle
-        </mat-icon>
-        </mat-toolbar-row>
-        <mat-toolbar-row class="n-fixed-header">
-            <span>Read about the most popular and watched movies!</span><br>
-            <div class="verical-line"></div>
-            <div>
-                <p>From our website you can see all the most popularity & rating films</p>
-                <span>Enjoy Watching!</span>
-                <div>
-                    <button class="moviesType" (click)=naviagteToMostPopular()  mat-stroked-button >Most Popularity</button>
-                    <button class="moviesType" mat-stroked-button  (click)=naviagteToMostRating()>Most rating</button>
-                </div>
-            </div>
-        </mat-toolbar-row>
-</mat-toolbar>
- </header>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row class="fixed-header" color="primary">
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Example games icon">games</mat-icon>
+      <span>Cinema Box</span>
+      <span class="example-spacer"></span>
+      <mat-icon (click)="showLogin()" class="example-icon" aria-hidden="false" aria-label="Example account_circle icon">
+        account_circle
+      </mat-icon>
+
+      <button class="btn_menu" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        {{name}} <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          Your Accounts
+        </button>
+        <button mat-menu-item>
+          <mat-icon>favorite</mat-icon>
+          <span>Favourite Movie</span>
+        </button>
+        <button mat-menu-item (click)="signOut()">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+          sign Out!
+        </button>
+      </mat-menu>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="n-fixed-header">
+      <span>Read about the most popular and watched movies!</span><br>
+      <div class="verical-line"></div>
+      <div>
+        <p>From our website you can see all the most popularity & rating films</p>
+        <span>Enjoy Watching!</span>
+        <div>
+          <button class="moviesType" (click)=naviagteToMostPopular() mat-stroked-button>Most Popularity</button>
+          <button class="moviesType" mat-stroked-button (click)=naviagteToMostRating()>Most rating</button>
+        </div>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
