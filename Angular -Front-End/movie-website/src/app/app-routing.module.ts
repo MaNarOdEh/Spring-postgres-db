@@ -1,3 +1,4 @@
+import { UpdateInfoComponent } from "./update-info/update-info.component";
 import { MovieFavComponent } from "./movie-fav/movie-fav.component";
 import { MovieDetailsComponent } from "./movie-details/movie-details.component";
 import { MovieListComponent } from "./movie-list/movie-list.component";
@@ -25,6 +26,7 @@ const routes: Routes = [
   },
   { path: "details/:id", component: MovieDetailsComponent },
   { path: "movie/favourite", component: MovieFavComponent },
+  { path: "user/updateInfo", component: UpdateInfoComponent },
   { path: "**", redirectTo: "movies/topRating" },
 ];
 

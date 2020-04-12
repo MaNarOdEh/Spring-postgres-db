@@ -31,6 +31,9 @@ export class HeaderComponent implements OnInit {
   showLogin() {
     this._router.navigate(["/login"]);
   }
+  updateInfo() {
+    this._router.navigate(["/user/updateInfo"]);
+  }
   signOut(): void {
     this.name = "";
     this.token.signOut();

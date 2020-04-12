@@ -39,7 +39,6 @@ public class MovieController {
     public void addMovie(@RequestBody Movie movie) {
         System.out.println(movie.getPerson().getUserName());
         Person person = (Person) personServiceImp.loadUserByUsername(movie.getPerson().getUserName());
-        System.out.println(person.getUserName() + "  " + person.getId());
         movie.setPerson(person);
         movieServices.addMovie(movie);
     }

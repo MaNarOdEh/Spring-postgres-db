@@ -21,6 +21,7 @@ import { FormsModule } from "@angular/forms";
 import { MovieDetailsComponent } from "./movie-details/movie-details.component";
 import { AuthInterceptor } from "./shared/service/_helpers/auth-interceptor";
 import { MovieFavComponent } from "./movie-fav/movie-fav.component";
+import { UpdateInfoComponent } from './update-info/update-info.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MovieFavComponent } from "./movie-fav/movie-fav.component";
     MovieListComponent,
     MovieDetailsComponent,
     MovieFavComponent,
+    UpdateInfoComponent,
   ],
   imports: [
     BrowserModule,
