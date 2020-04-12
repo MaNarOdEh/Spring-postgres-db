@@ -15,6 +15,9 @@ export class UpdatePasswordService {
   constructor(private http: HttpClient, private token: TokenStorageService) {}
   updateInfo(oldPassword: String, newPassowrd: String) {
     let personInfo = this.token.getUser();
+    if (personInfo.password != oldPassword) {
+      throwError("Old Password does Not much!!");
+    }
     this.http
       .put(
         `${UPDATE_USER_API}${oldPassword}`,
