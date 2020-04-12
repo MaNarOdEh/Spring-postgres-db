@@ -11,7 +11,6 @@ import com.example.demo.services.PersonServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,6 +52,13 @@ public class PersonController {
     public void updateUser(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody Person user) {
         user.setId(id);
         this.personService.updatePerson(user);
+    }
+
+    @PutMapping("/update/password")
+    public void updateUserPassword(@RequestBody Person person) {
+        Person person_2 = (Person) personService.loadUserByUsername(person.getUserName());
+        person.setId(person_2.getId());
+        this.personService.updatePerson(person);
     }
 
     @GetMapping("/getSortedPersonName")

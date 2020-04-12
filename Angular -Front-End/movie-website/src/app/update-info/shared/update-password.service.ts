@@ -2,7 +2,7 @@ import { TokenStorageService } from "src/app/shared/service/token-storage.servic
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-const UPDATE_USER_API = "http://localhost:8080/api/v1/update/password";
+const UPDATE_USER_API = "http://localhost:8080/api/user/update/password";
 
 @Injectable({
   providedIn: "root",
