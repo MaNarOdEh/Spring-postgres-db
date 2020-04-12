@@ -7,6 +7,7 @@ import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import com.example.demo.exceptions.PasswordNotMatchException;
 import com.example.demo.exceptions.PersonNotFoundException;
 import com.example.demo.exceptions.PersonUserNameFound;
 import com.example.demo.model.Person;
@@ -105,6 +106,15 @@ public class PersonServiceImp implements UserDetailsService, PersonServices {
         }
         this.personRepository.save(person);
 
+    }
+
+    public void updatePersonPassword(Person person, String password) {
+        Person person_2 = (Person) loadUserByUsername(person.getUserName());
+        if (!password.equals(person_2.getPassword())) {
+            throw new PasswordNotMatchException();
+        }
+        person.setId(person_2.getId());
+        save(person);
     }
 
 }

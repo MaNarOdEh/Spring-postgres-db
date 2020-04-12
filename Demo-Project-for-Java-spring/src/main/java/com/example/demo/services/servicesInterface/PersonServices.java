@@ -16,6 +16,8 @@ public interface PersonServices {
 
     public Person findById(UUID id);
 
+    public void updatePersonPassword(Person person, String password);
+
     public List<String> getAllPersonNames();
 
     public List<Person> getAllUserThatDoesNotHaveAnyFavouriteMovie();

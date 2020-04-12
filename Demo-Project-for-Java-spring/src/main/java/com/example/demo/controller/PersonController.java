@@ -55,10 +55,8 @@ public class PersonController {
     }
 
     @PutMapping("/update/password")
-    public void updateUserPassword(@RequestBody Person person) {
-        Person person_2 = (Person) personService.loadUserByUsername(person.getUserName());
-        person.setId(person_2.getId());
-        this.personService.updatePerson(person);
+    public void updateUserPassword(@RequestBody Person person, @PathVariable("old_passowrd") String old_passowrd) {
+        this.personService.updatePersonPassword(person, old_passowrd);
     }
 
     @GetMapping("/getSortedPersonName")
