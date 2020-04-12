@@ -18,7 +18,7 @@ export class UpdatePasswordService {
     if (personInfo.password != oldPassword) {
       throwError("Old Password does Not much!!");
     }
-    this.http
+    return this.http
       .put(
         `${UPDATE_USER_API}${oldPassword}`,
         {
