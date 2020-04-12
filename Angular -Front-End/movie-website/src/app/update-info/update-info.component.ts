@@ -8,8 +8,16 @@ import { Component, OnInit } from "@angular/core";
 export class UpdateInfoComponent implements OnInit {
   oldPassword: string;
   password: string;
+  error: string;
   constructor() {}
 
   ngOnInit(): void {}
-  update() {}
+  update() {
+    console.log(this.oldPassword);
+    console.log(this.password);
+    if (this.oldPassword == undefined || this.password == undefined) {
+      this.error = "All field is requierd";
+    } else {
+    }
+  }
 }

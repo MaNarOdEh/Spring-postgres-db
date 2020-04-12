@@ -1,11 +1,11 @@
 <div class="wrapper">
-
   <p class="header_title">Update User Password!</p>
   <form>
     <input type="password" [(ngModel)]="oldPassword" id="old_password" class="fadeIn second" name="login"
       placeholder="old password">
     <input type="password" [(ngModel)]="password" id="password" class="fadeIn third" name="login"
       placeholder="password">
+    <span class="error">{{error}}</span>
     <input type="button" value="update" (click)="update()">
   </form>
 </div>

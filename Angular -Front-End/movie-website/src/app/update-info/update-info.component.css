@@ -1,10 +1,41 @@
 .wrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 30px;
+  width: 800px;
+  height: 350px;
+}
 
+.header_title {
+  color: #dfdfdf;
+  size: 25px;
+  font-weight: bold;
+  padding-bottom: 15px;
+  margin: 55px;
+  width: 150px;
+  border-bottom-width: 2px;
+  border-bottom-color: #56baed;
+  border-bottom-style: solid;
+}
+
+input[type=password] {
+  width: 400px;
+  display: block;
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin-bottom: 10px;
+  margin-left: 25px;
 }
 
 input[type=button] {
@@ -21,92 +52,19 @@ input[type=button] {
   box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
-  margin-bottom: 30px;
-  margin-top: 30px;
-  position: absolute;
-  margin-right: 5px;
+  margin-bottom: 10px;
+  margin-top: 5px;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  margin-left: 150px;
 }
 
-input[type=button]:hover,
-input[type=submit]:hover,
-input[type=reset]:hover {
-  background-color: #39ace7;
-}
-
-
-input[type=text] {
-  background-color: #f6f6f6;
-  border: none;
-  color: #0d0d0d;
-  padding: 15px 32px;
+.error {
+  width: 200px;
+  margin-left: 150px;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 70%;
-  border: 2px solid #f6f6f6;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-}
-
-.header_title {
-  color: #56baed;
-  size: 25px;
-  font-weight: bold;
-  padding-top: 30px;
-  padding-bottom: 40px;
-  text-align: center;
-  width: 100%;
-  color: #d5d5dd;
-
-}
-
-
-input[type=passsword]:focus {
-  background-color: #fff;
-  border-bottom: 2px solid #5fbae9;
-}
-
-input[type=text]:placeholder {
-  color: #cccccc;
-}
-
-input[type=button]:hover,
-input[type=submit]:hover {
-  background-color: #39ace7;
-}
-
-
-input[type=password] {
-  background-color: #f6f6f6;
-  border: none;
-  color: #0d0d0d;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 5px;
-  width: 70%;
-  border: 2px solid #f6f6f6;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-  margin-right: 35px;
+  display: block;
 }
