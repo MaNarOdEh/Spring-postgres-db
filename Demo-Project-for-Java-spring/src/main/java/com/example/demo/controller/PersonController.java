@@ -54,7 +54,7 @@ public class PersonController {
         this.personService.updatePerson(user);
     }
 
-    @PutMapping("/update/password")
+    @PutMapping("/update/password/{old_passowrd}")
     public void updateUserPassword(@RequestBody Person person, @PathVariable("old_passowrd") String old_passowrd) {
         this.personService.updatePersonPassword(person, old_passowrd);
     }
