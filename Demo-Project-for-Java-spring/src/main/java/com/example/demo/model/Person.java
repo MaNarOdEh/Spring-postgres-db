@@ -89,7 +89,7 @@ public class Person implements UserDetails {
     }
 
     /**
-     * @param userName the userName to set
+     * @param username the userName to set
      */
     public void setUserName(String userName) {
         this.userName = userName;
@@ -122,6 +122,7 @@ public class Person implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
     }

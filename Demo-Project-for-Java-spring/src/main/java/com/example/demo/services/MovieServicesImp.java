@@ -99,7 +99,7 @@ public class MovieServicesImp implements MovieServices {
     @Override
     public List<Movie> getMoviesStartWithChars(UUID userId, Character ch) {
         List<Movie> movie = movieRepository.findByPersonId(userId);
-        return movie.stream().filter(mov -> mov.getMovieId().startsWith("s")).collect(Collectors.toList());
+        return movie.stream().filter(mov -> mov.getMovieId().startsWith(ch + "")).collect(Collectors.toList());
     }
 
 }

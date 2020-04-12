@@ -37,7 +37,7 @@ public class MovieController {
     @PostMapping("/add")
     @CrossOrigin(origins = "http://localhost:4200")
     public void addMovie(@RequestBody Movie movie) {
-        System.out.println(movie.getPerson().getUserName());
+        // System.out.println(movie.getPerson().getUserName());
         Person person = (Person) personServiceImp.loadUserByUsername(movie.getPerson().getUserName());
         movie.setPerson(person);
         movieServices.addMovie(movie);
@@ -91,6 +91,7 @@ public class MovieController {
      * 
      */
     @DeleteMapping("{idUser}/movies/{movieId}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public void deleteMovie(@PathVariable("idUser") UUID userId, @PathVariable("movieId") String movieId) {
         movieServices.deleteMovie(userId, movieId);
     }

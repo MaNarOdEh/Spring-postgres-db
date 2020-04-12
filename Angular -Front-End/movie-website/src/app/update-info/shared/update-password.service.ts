@@ -16,22 +16,23 @@ export class UpdatePasswordService {
   updateInfo(oldPassword: String, newPassowrd: String) {
     let personInfo = this.token.getUser();
     if (personInfo.password != oldPassword) {
-      throwError("Old Password does Not much!!");
+      return throwError("Old Password does Not much!!");
+    } else {
+      console.log("hey!");
+      return this.http
+        .put(
+          `${UPDATE_USER_API}${oldPassword}`,
+          {
+            username: personInfo.username,
+            password: newPassowrd,
+          },
+          httpOptions
+        )
+        .pipe(
+          catchError((error) => {
+            return throwError(error);
+          })
+        );
     }
-    return this.http
-      .put(
-        `${UPDATE_USER_API}${oldPassword}`,
-        {
-          username: personInfo.username,
-          password: newPassowrd,
-        },
-        httpOptions
-      )
-      .pipe(
-        catchError((error) => {
-          console.log(error);
-          return throwError(error);
-        })
-      );
   }
 }

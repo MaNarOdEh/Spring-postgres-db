@@ -49,13 +49,15 @@ public class PersonController {
     }
 
     @PutMapping("/{id}")
-    public void updateUser(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody Person user) {
+    public void updateUser(@PathVariable("id") UUID id, @RequestBody Person user) {
         user.setId(id);
         this.personService.updatePerson(user);
     }
 
     @PutMapping("/update/password/{old_passowrd}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public void updateUserPassword(@RequestBody Person person, @PathVariable("old_passowrd") String old_passowrd) {
+        System.out.println(person.getPassword() + "  " + person.getUserName() + "  " + person.getId());
         this.personService.updatePersonPassword(person, old_passowrd);
     }
 

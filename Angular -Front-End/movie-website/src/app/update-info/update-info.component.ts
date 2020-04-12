@@ -15,14 +15,17 @@ export class UpdateInfoComponent implements OnInit {
   ngOnInit(): void {}
   update() {
     this.error = "";
-    console.log(this.oldPassword);
-    console.log(this.password);
     if (this.oldPassword == undefined || this.password == undefined) {
       this.error = "All field is requierd";
     } else {
       this._updatePasswordService
         .updateInfo(this.oldPassword, this.password)
-        .subscribe((arg) => console.log(arg));
+        .subscribe(
+          (arg) => {},
+          (err) => {
+            // this.error = err;
+          }
+        );
     }
   }
 }

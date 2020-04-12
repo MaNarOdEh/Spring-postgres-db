@@ -100,7 +100,7 @@ public class PersonServiceImp implements UserDetailsService, PersonServices {
     public void updatePerson(Person person) {
         person.setUserPassword(passwordEncoder().encode(person.getPassword()));
         List<Person> persons = findAll();
-        Predicate<Person> predicate = p -> p.getUserName().equals(person.getUserName());
+        Predicate<Person> predicate = p -> p.getId().equals(person.getId());
         if (!persons.stream().anyMatch(predicate)) {
             throw new PersonNotFoundException(person.getUserName());
         }
@@ -109,12 +109,16 @@ public class PersonServiceImp implements UserDetailsService, PersonServices {
     }
 
     public void updatePersonPassword(Person person, String password) {
+        System.out.println(person.getPassword() + "  " + person.getUserName() + "  " + person.getId());
+        System.out.println((passwordEncoder().encode(password)));
         Person person_2 = (Person) loadUserByUsername(person.getUserName());
-        if (!password.equals(person_2.getPassword())) {
-            throw new PasswordNotMatchException();
-        }
+        /*
+         * if (!(passwordEncoder().encode(password)).equals(person_2.getPassword())) {
+         * System.out.println("Not Equal"); throw new PasswordNotMatchException(); }
+         */
         person.setId(person_2.getId());
-        save(person);
+        person.setUserPassword(passwordEncoder().encode(person.getPassword()));
+        updatePerson(person);
     }
 
 }
