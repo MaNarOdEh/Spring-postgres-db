@@ -4,6 +4,7 @@ import { MovieFavService } from "./shared/movie-fav.service";
 import { Component, OnInit } from "@angular/core";
 import { Movie } from "../shared/model/Movie";
 import { Router } from "@angular/router";
+import { UserService } from "../shared/service/user.service";
 
 @Component({
   selector: "app-movie-fav",
@@ -16,10 +17,14 @@ export class MovieFavComponent implements OnInit {
     private _movieService: MovieFavService,
     private _movieDetails: MovieDetailsServiceService,
     private _movieRemove: DeleteMovieService,
-    private _router: Router
+    private _router: Router,
+    private _userService: UserService
   ) {}
 
   ngOnInit(): void {
+    if (this._userService.getLogin() == false) {
+      this._router.navigate(["/movies/topRating"]);
+    }
     this._movieService.getFavMovie().subscribe((res) => {
       let movies = res;
       for (let movie of movies) {

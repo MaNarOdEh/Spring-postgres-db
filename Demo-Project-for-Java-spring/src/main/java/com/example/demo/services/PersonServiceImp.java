@@ -109,15 +109,13 @@ public class PersonServiceImp implements UserDetailsService, PersonServices {
     }
 
     public void updatePersonPassword(Person person, String password) {
-        System.out.println(person.getPassword() + "  " + person.getUserName() + "  " + person.getId());
-        System.out.println((passwordEncoder().encode(password)));
+
         Person person_2 = (Person) loadUserByUsername(person.getUserName());
         /*
          * if (!(passwordEncoder().encode(password)).equals(person_2.getPassword())) {
          * System.out.println("Not Equal"); throw new PasswordNotMatchException(); }
          */
         person.setId(person_2.getId());
-        person.setUserPassword(passwordEncoder().encode(person.getPassword()));
         updatePerson(person);
     }
 

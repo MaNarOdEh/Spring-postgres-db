@@ -9,6 +9,7 @@ import {
   MatDialog,
 } from "@angular/material/dialog";
 import { TokenStorageService } from "../shared/service/token-storage.service";
+import { MovieDetailsServiceService } from "../shared/service/movie-details-service.service";
 
 @Component({
   selector: "app-movie-list",

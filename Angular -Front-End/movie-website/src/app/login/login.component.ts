@@ -2,6 +2,7 @@ import { TokenStorageService } from "./../shared/service/token-storage.service";
 import { AuthService } from "./../shared/service/auth.service";
 import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
+import { UserService } from "../shared/service/user.service";
 
 @Component({
   selector: "app-login",
@@ -16,10 +17,16 @@ export class LoginComponent implements OnInit {
   constructor(
     private _router: Router,
     private _authService: AuthService,
-    private _tokenService: TokenStorageService
+    private _tokenService: TokenStorageService,
+    private _userService: UserService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this._userService.getLogin());
+    if (this._userService.getLogin() == true) {
+      this._router.navigate(["/movies/topRating"]);
+    }
+  }
   login(): void {
     let user = { username: this.username, password: this.password };
     if (user.username == undefined || user.password == undefined) {
@@ -29,7 +36,6 @@ export class LoginComponent implements OnInit {
         (data) => {
           this._tokenService.saveToken(data.token);
           this._tokenService.saveUser(user);
-          window.location.reload();
           this._router.navigate(["movies/mostPopular"]);
           this.error = "";
         },

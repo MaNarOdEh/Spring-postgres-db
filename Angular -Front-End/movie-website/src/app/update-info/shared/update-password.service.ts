@@ -18,13 +18,13 @@ export class UpdatePasswordService {
     if (personInfo.password != oldPassword) {
       return throwError("Old Password does Not much!!");
     } else {
-      console.log("hey!");
       return this.http
         .put(
           `${UPDATE_USER_API}${oldPassword}`,
           {
             username: personInfo.username,
             password: newPassowrd,
+            userName: personInfo.username,
           },
           httpOptions
         )
