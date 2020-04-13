@@ -1,5 +1,5 @@
-import { login, singout } from "./login.action";
 import { Action, on, createReducer } from "@ngrx/store";
+import { login, singout } from "../Action/login.action";
 
 export const isLogin = false;
 
@@ -9,6 +9,7 @@ const _loginReducer = createReducer(
   on(login, (state) => (state = true)),
   on(singout, (state) => (state = false))
 );
+/*Action is an interface that have anattributes called type*/
 export function reducer(state, action: Action) {
   return _loginReducer(state, action);
 }

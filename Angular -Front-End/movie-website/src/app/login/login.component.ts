@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { take } from "rxjs/operators";
-import { login } from "../store/login.action";
+import { login } from "../store/Action/login.action";
 
 @Component({
   selector: "app-login",
