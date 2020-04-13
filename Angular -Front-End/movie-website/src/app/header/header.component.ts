@@ -11,7 +11,7 @@ import { login } from "../store/login.action";
   styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
-  name: string;
+  name: string = "";
   login: boolean;
 
   constructor(
@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
       );
     }
     this._store.subscribe((data) => {
-      this.name = token.getUser().username;
+      if (this.name != undefined) this.name = token.getUser().username;
       this.login = data.login;
     });
   }

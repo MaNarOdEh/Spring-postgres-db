@@ -9,6 +9,6 @@ const _loginReducer = createReducer(
   on(login, (state) => (state = true)),
   on(singout, (state) => (state = false))
 );
-export function loginReducer(state, action: Action) {
+export function reducer(state, action: Action) {
   return _loginReducer(state, action);
 }
