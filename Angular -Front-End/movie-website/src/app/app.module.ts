@@ -23,7 +23,7 @@ import { AuthInterceptor } from "./shared/service/_helpers/auth-interceptor";
 import { MovieFavComponent } from "./movie-fav/movie-fav.component";
 import { UpdateInfoComponent } from "./update-info/update-info.component";
 import { StoreModule } from "@ngrx/store";
-import { reducerFunction } from "./store/store";
+import { loginReducer } from "./store/login.reducer";
 
 @NgModule({
   declarations: [
@@ -49,7 +49,7 @@ import { reducerFunction } from "./store/store";
     MatMenuModule,
     MatDialogModule,
     MatButtonModule,
-    StoreModule.forRoot({ firstReducer: reducerFunction }),
+    StoreModule.forRoot({ login: loginReducer }),
   ],
   providers: [
     AuthService,
