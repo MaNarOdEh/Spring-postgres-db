@@ -1,9 +1,9 @@
+import { singout } from "./../store/login.action";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { TokenStorageService } from "../shared/service/token-storage.service";
-import { Store, select } from "@ngrx/store";
-import { Observable } from "rxjs";
-import { singout, login } from "../store/login.action";
+import { Store } from "@ngrx/store";
+import { login } from "../store/login.action";
 
 @Component({
   selector: "app-header",
@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
     if (this.name != undefined) {
       this._store.dispatch(login());
     }
-    // this.login = _store.pipe(select("login"));
     this._store.subscribe((data) => {
       this.login = data.login;
     });

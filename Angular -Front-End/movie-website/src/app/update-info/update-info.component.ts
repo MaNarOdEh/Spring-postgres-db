@@ -1,7 +1,8 @@
-import { UserService } from "./../shared/service/user.service";
+import { TokenStorageService } from "src/app/shared/service/token-storage.service";
 import { UpdatePasswordService } from "./shared/update-password.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
 
 @Component({
   selector: "app-update-info",
@@ -14,15 +15,10 @@ export class UpdateInfoComponent implements OnInit {
   error: string;
   constructor(
     private _router: Router,
-    private _updatePasswordService: UpdatePasswordService,
-    private _userService: UserService
+    private _updatePasswordService: UpdatePasswordService
   ) {}
 
-  ngOnInit(): void {
-    if (this._userService.getLogin() == false) {
-      this._router.navigate(["/movies/topRating"]);
-    }
-  }
+  ngOnInit(): void {}
   update() {
     this.error = "";
     if (this.oldPassword == undefined || this.password == undefined) {

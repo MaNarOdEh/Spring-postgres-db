@@ -4,7 +4,10 @@ import { MovieFavService } from "./shared/movie-fav.service";
 import { Component, OnInit } from "@angular/core";
 import { Movie } from "../shared/model/Movie";
 import { Router } from "@angular/router";
-import { UserService } from "../shared/service/user.service";
+import { Store } from "@ngrx/store";
+import { TokenStorageService } from "../shared/service/token-storage.service";
+import { take, first } from "rxjs/operators";
+import { connectableObservableDescriptor } from "rxjs/internal/observable/ConnectableObservable";
 
 @Component({
   selector: "app-movie-fav",
@@ -18,13 +21,15 @@ export class MovieFavComponent implements OnInit {
     private _movieDetails: MovieDetailsServiceService,
     private _movieRemove: DeleteMovieService,
     private _router: Router,
-    private _userService: UserService
+    private _store: Store<{ login: boolean }>
   ) {}
 
   ngOnInit(): void {
-    if (this._userService.getLogin() == false) {
-      this._router.navigate(["/movies/topRating"]);
-    }
+    this._store.pipe(first()).subscribe((data) => {
+      if (data.login == false) {
+        this._router.navigate(["movies/mostPopular"]);
+      }
+    });
     this._movieService.getFavMovie().subscribe((res) => {
       let movies = res;
       for (let movie of movies) {
