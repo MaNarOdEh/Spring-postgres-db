@@ -1,7 +1,9 @@
+import { login } from "./../store/Action/login.action";
+import { LoginState } from "./../store/Reducer/login.reducer";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { TokenStorageService } from "../shared/service/token-storage.service";
-import { Store } from "@ngrx/store";
+import { Store, select } from "@ngrx/store";
 import { login, singout } from "../store/Action/login.action";
 
 @Component({
@@ -12,11 +14,10 @@ import { login, singout } from "../store/Action/login.action";
 export class HeaderComponent implements OnInit {
   name: string = "";
   login: boolean;
-
   constructor(
     private _router: Router,
     private token: TokenStorageService,
-    private _store: Store<{ login: boolean }>
+    private _store: Store<{ login: LoginState }>
   ) {
     this.name = token.getUser() == null ? undefined : token.getUser().username;
     if (this.name != undefined) {
@@ -24,10 +25,10 @@ export class HeaderComponent implements OnInit {
         login({ username: this.name, password: token.getUser().password })
       );
     }
-    this._store.subscribe((data) => {
+    this._store.pipe(select("login")).subscribe((data) => {
       this.name =
         token.getUser() == null ? undefined : token.getUser().username;
-      this.login = data.login;
+      this.login = data.isLogin;
     });
   }
 

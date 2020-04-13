@@ -5,6 +5,7 @@ import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { take } from "rxjs/operators";
 import { login } from "../store/Action/login.action";
+import { LoginState } from "../store/Reducer/login.reducer";
 
 @Component({
   selector: "app-login",
@@ -20,12 +21,12 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _authService: AuthService,
     private _tokenService: TokenStorageService,
-    private _store: Store<{ login: boolean }>
+    private _store: Store<{ login: LoginState }>
   ) {}
 
   ngOnInit(): void {
     this._store.pipe(take(1)).subscribe((data) => {
-      if (data.login == true) {
+      if (data.login.isLogin == true) {
         this._router.navigate(["movies/mostPopular"]);
       }
     });

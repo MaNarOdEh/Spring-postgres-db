@@ -8,6 +8,7 @@ import { Store } from "@ngrx/store";
 import { TokenStorageService } from "../shared/service/token-storage.service";
 import { take, first } from "rxjs/operators";
 import { connectableObservableDescriptor } from "rxjs/internal/observable/ConnectableObservable";
+import { LoginState } from "../store/Reducer/login.reducer";
 
 @Component({
   selector: "app-movie-fav",
@@ -21,12 +22,13 @@ export class MovieFavComponent implements OnInit {
     private _movieDetails: MovieDetailsServiceService,
     private _movieRemove: DeleteMovieService,
     private _router: Router,
-    private _store: Store<{ login: boolean }>
+    private _store: Store<{ login: LoginState }>
   ) {}
 
   ngOnInit(): void {
     this._store.pipe(first()).subscribe((data) => {
-      if (data.login == false) {
+      console.log(data.login.isLogin);
+      if (data.login.isLogin == false) {
         this._router.navigate(["movies/mostPopular"]);
       }
     });
