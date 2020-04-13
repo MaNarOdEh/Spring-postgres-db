@@ -21,9 +21,12 @@ export class HeaderComponent implements OnInit {
   ) {
     this.name = token.getUser() == null ? undefined : token.getUser().username;
     if (this.name != undefined) {
-      this._store.dispatch(login());
+      this._store.dispatch(
+        login({ username: this.name, password: token.getUser().password })
+      );
     }
     this._store.subscribe((data) => {
+      this.name = token.getUser().username;
       this.login = data.login;
     });
   }

@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { take } from "rxjs/operators";
+import { login } from "../store/login.action";
 
 @Component({
   selector: "app-login",
@@ -40,7 +41,9 @@ export class LoginComponent implements OnInit {
           this._tokenService.saveUser(user);
           console.log(user, data.token);
           this._router.navigate(["movies/mostPopular"]);
-          this._store.dispatch({ type: "login" });
+          this._store.dispatch(
+            login({ username: user.username, password: user.password })
+          );
           this.error = "";
         },
         (err) => {

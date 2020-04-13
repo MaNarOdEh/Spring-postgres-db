@@ -1,5 +1,6 @@
 import { login, singout } from "./login.action";
 import { Action, on, createReducer } from "@ngrx/store";
+
 export const isLogin = false;
 
 /*State changes are handled by pure functions (reducer)*/

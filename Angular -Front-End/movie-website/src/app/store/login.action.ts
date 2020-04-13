@@ -1,4 +1,7 @@
-import { createAction } from "@ngrx/store";
+import { createAction, props } from "@ngrx/store";
 
-export const login = createAction("[Login Component] Login");
-export const singout = createAction("[Login Component] Signout");
+export const login = createAction(
+  "[Login Page] Login",
+  props<{ username: string; password: string }>()
+);
+export const singout = createAction("[Signout Page] Signout");
