@@ -3,6 +3,8 @@ import { AuthService } from "./../shared/service/auth.service";
 import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "../shared/service/user.service";
+import { Store } from "@ngrx/store";
+import { login } from "../store/login.action";
 
 @Component({
   selector: "app-login",
@@ -18,7 +20,8 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _authService: AuthService,
     private _tokenService: TokenStorageService,
-    private _userService: UserService
+    private _userService: UserService,
+    private _store: Store<{ login: boolean }>
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +40,7 @@ export class LoginComponent implements OnInit {
           this._tokenService.saveToken(data.token);
           this._tokenService.saveUser(user);
           this._router.navigate(["movies/mostPopular"]);
+          this._store.dispatch(login());
           this.error = "";
         },
         (err) => {
