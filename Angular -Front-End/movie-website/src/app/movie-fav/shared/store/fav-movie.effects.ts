@@ -1,10 +1,10 @@
 import { Action } from "@ngrx/store";
-import { MovieFavService } from "./../../movie-fav/shared/movie-fav.service";
+import { MovieFavService } from "../service/movie-fav.service";
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType, Effect } from "@ngrx/effects";
 import { EMPTY, of, Observable } from "rxjs";
 import { map, mergeMap, catchError } from "rxjs/operators";
-import * as FavMoviesAction from "./../Action/favMovie.action";
+import * as FavMoviesAction from "./fav-movie.action";
 
 /*
  * FavMovie (add[movieId,userName],delete[movieId,userName],get[username])

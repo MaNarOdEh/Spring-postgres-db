@@ -3,6 +3,8 @@ import { UpdatePasswordService } from "./shared/update-password.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
+import { LoginState } from "../store/Reducer/login.reducer";
+import { first } from "rxjs/operators";
 
 @Component({
   selector: "app-update-info",
@@ -15,10 +17,17 @@ export class UpdateInfoComponent implements OnInit {
   error: string;
   constructor(
     private _router: Router,
-    private _updatePasswordService: UpdatePasswordService
+    private _updatePasswordService: UpdatePasswordService,
+    private _store: Store<{ login: LoginState }>
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._store.pipe(first()).subscribe((data) => {
+      if (data.login.isLogin == false) {
+        this._router.navigate(["movies/mostPopular"]);
+      }
+    });
+  }
   update() {
     this.error = "";
     if (this.oldPassword == undefined || this.password == undefined) {

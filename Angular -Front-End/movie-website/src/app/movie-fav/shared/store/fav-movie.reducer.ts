@@ -1,5 +1,5 @@
 import { State } from "@ngrx/store";
-import * as FavMoviesAction from "./../Action/favMovie.action";
+import * as FavMoviesAction from "./fav-movie.action";
 /**
  * this class will createReducer that will deal with add,remove,get fav movies
  */

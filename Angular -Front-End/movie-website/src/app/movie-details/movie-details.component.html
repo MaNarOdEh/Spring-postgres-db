@@ -1,21 +1,19 @@
-<div class="details"> 
+<div class="details">
 
-    <div class="left">
-        <img  mat-card-image src="https://image.tmdb.org/t/p/w300//{{movie['poster_path']}}" 
-            onerror="this.src='https://image.tmdb.org/t/p/w300///20djTLqppfBx5WYA67Y300S6aPD.jpg'"
-            alt="https://image.tmdb.org/t/p/w300///20djTLqppfBx5WYA67Y300S6aPD.jpg">
-    
-    </div>
-    <div class="right">
-        <mat-card-header>
-            <mat-card-title>{{movie['title']}}</mat-card-title>
-            <mat-card-subtitle>{{movie['original_title']}}</mat-card-subtitle>
-        </mat-card-header>
-        <p>{{movie['overview']}}</p>
-        <p><span>Release Date : </span>{{movie['release_date']}}</p>
-        <p>Rating : {{movie['popularity']}}</p>
-        <button>Add to Faviroute</button>
-    </div>
-    
-    </div>
-    
+  <div class="left">
+    <img mat-card-image src="https://image.tmdb.org/t/p/w300//{{movie['poster_path']}}"
+      onerror="this.src='https://image.tmdb.org/t/p/w300///20djTLqppfBx5WYA67Y300S6aPD.jpg'"
+      alt="https://image.tmdb.org/t/p/w300///20djTLqppfBx5WYA67Y300S6aPD.jpg">
+  </div>
+  <div class="right">
+    <mat-card-header>
+      <mat-card-title>{{movie['title'] | uppercase}}</mat-card-title>
+      <mat-card-subtitle>{{movie['original_title']}}</mat-card-subtitle>
+    </mat-card-header>
+    <p>{{movie['overview']}}</p>
+    <p><span>Release Date : </span>{{movie['release_date']}}</p>
+    <p>Rating : {{movie['popularity']}}</p>
+    <button>Add to Faviroute</button>
+  </div>
+
+</div>

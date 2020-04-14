@@ -10,7 +10,7 @@ import { MovieDetailsServiceService } from "../shared/service/movie-details-serv
 })
 export class MovieDetailsComponent implements OnInit {
   id: string;
-  movie: Movie;
+  movie: Movie = new Movie();
 
   constructor(
     private route: ActivatedRoute,
@@ -22,8 +22,6 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.movieDetails.getMovieDetails(this.id).subscribe((res) => {
       this.movie = res;
-      console.log(res);
-      console.log("Film Details : ", this.movie);
     });
   }
 }
