@@ -24,6 +24,5 @@ const _loginReducer = createReducer(
  */
 /*Action is an interface that have anattributes called type*/
 export function reducer(state: LoginState | undefined, action: Action) {
-  console.log(action.type);
   return _loginReducer(state, action);
 }

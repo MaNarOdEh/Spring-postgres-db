@@ -1,3 +1,4 @@
+import { MovieEffects } from "./store/Effect/favMovie.effects";
 import { AuthService } from "./shared/service/auth.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -22,8 +23,10 @@ import { MovieDetailsComponent } from "./movie-details/movie-details.component";
 import { AuthInterceptor } from "./shared/service/_helpers/auth-interceptor";
 import { MovieFavComponent } from "./movie-fav/movie-fav.component";
 import { UpdateInfoComponent } from "./update-info/update-info.component";
+import { reducers } from "./store/app-store";
 import { StoreModule } from "@ngrx/store";
-import { reducers } from "./store/store";
+import { EffectsModule } from "@ngrx/effects";
+import { Store } from "@ngrx/store";
 
 @NgModule({
   declarations: [
@@ -50,8 +53,10 @@ import { reducers } from "./store/store";
     MatDialogModule,
     MatButtonModule,
     StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([MovieEffects]),
   ],
   providers: [
+    Store,
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],

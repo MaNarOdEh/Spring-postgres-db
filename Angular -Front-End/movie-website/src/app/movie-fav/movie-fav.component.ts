@@ -7,8 +7,9 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { TokenStorageService } from "../shared/service/token-storage.service";
 import { take, first } from "rxjs/operators";
-import { connectableObservableDescriptor } from "rxjs/internal/observable/ConnectableObservable";
 import { LoginState } from "../store/Reducer/login.reducer";
+
+import * as FavMoviesAction from "./../store/Action/favMovie.action";
 
 @Component({
   selector: "app-movie-fav",
@@ -22,24 +23,29 @@ export class MovieFavComponent implements OnInit {
     private _movieDetails: MovieDetailsServiceService,
     private _movieRemove: DeleteMovieService,
     private _router: Router,
-    private _store: Store<{ login: LoginState }>
+    private _store: Store<{ login: LoginState }>,
+    private _movieStore: Store<any>
   ) {}
 
   ngOnInit(): void {
     this._store.pipe(first()).subscribe((data) => {
-      console.log(data.login.isLogin);
       if (data.login.isLogin == false) {
         this._router.navigate(["movies/mostPopular"]);
       }
     });
-    this._movieService.getFavMovie().subscribe((res) => {
+    this._movieStore.dispatch(new FavMoviesAction.LoadFavMovies());
+    this._movieStore.subscribe((state) => {
+      // console.log(state);
+      console.log(state["favMovie"].movie);
+    });
+    /* this._movieService.getFavMovie().subscribe((res) => {
       let movies = res;
       for (let movie of movies) {
         this._movieDetails.getMovieDetails(movie).subscribe((res) => {
           this.movieList.push(res);
         });
       }
-    });
+    });*/
   }
   naviagteToDetails(movie) {
     this._router.navigate(["/details", movie.id]);
@@ -50,7 +56,7 @@ export class MovieFavComponent implements OnInit {
       this.movieList.splice(index, 1);
     }
     this._movieRemove.removeMovie(movie.id).subscribe((res) => {
-      console.log(res);
+      //  console.log(res);
     });
   }
 }

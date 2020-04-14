@@ -1,6 +1,5 @@
 import { State } from "@ngrx/store";
 import * as FavMoviesAction from "./../Action/favMovie.action";
-import { MovieFavTypes } from "../enum/favMovieEnum";
 /**
  * this class will createReducer that will deal with add,remove,get fav movies
  */
@@ -10,18 +9,18 @@ export interface MovieState {
   loaded: boolean;
   error: string;
 }
-function favMovieReducer(
+export function reducer(
   state = movieFavInitialState,
   action: FavMoviesAction.action
 ): MovieState {
   switch (action.type) {
-    case MovieFavTypes.loadFavMovie: {
+    case FavMoviesAction.MovieFavTypes.LOAD_FAV_MOVIES: {
       return {
         ...state,
         loading: true,
       };
     }
-    case MovieFavTypes.LoadFavMovieSUCCESS: {
+    case FavMoviesAction.MovieFavTypes.LOAD_FAV_MOVIES_SUCCESS: {
       return {
         ...state,
         loading: false,
@@ -29,7 +28,7 @@ function favMovieReducer(
         movie: action.payload,
       };
     }
-    case MovieFavTypes.loadFavMovieFail: {
+    case FavMoviesAction.MovieFavTypes.LOAD_FAV_MOVIES_FAIL: {
       return {
         ...state,
         movie: [],
