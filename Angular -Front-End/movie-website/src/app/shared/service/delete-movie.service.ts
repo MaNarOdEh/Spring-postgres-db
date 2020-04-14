@@ -13,13 +13,10 @@ export class DeleteMovieService {
   constructor(private http: HttpClient, private token: TokenStorageService) {}
   removeMovie(movieId) {
     let personInfo = this.token.getUser();
-    console.log(personInfo.username);
-
     return this.http
       .delete(`${FAV_MOVIE_API}${personInfo.username}/${movieId}`)
       .pipe(
         catchError((error) => {
-          console.log(error);
           return throwError(error);
         })
       );

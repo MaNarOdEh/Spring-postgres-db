@@ -14,9 +14,6 @@ export class AddMovieService {
   constructor(private http: HttpClient, private token: TokenStorageService) {}
   addMovie(movieid): Observable<any> {
     let personInfo = this.token.getUser();
-    console.log(personInfo.username);
-    console.log(personInfo.password);
-    console.log(movieid);
     return this.http.post(
       ADD_MOVIE_API,
       {

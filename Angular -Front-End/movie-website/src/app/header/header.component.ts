@@ -1,4 +1,3 @@
-import { login } from "./../store/Action/login.action";
 import { LoginState } from "./../store/Reducer/login.reducer";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";

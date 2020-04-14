@@ -13,8 +13,17 @@ const _loginReducer = createReducer(
   on(login, (state) => (state = { isLogin: true })),
   on(singout, (state) => (state = { isLogin: false }))
 );
-
+/**
+ * _loginReducer(state,action){
+ * switch action.type:
+ * case 'login':
+ * case 'signout':
+ * default:
+ * }
+ *
+ */
 /*Action is an interface that have anattributes called type*/
 export function reducer(state: LoginState | undefined, action: Action) {
+  console.log(action.type);
   return _loginReducer(state, action);
 }
