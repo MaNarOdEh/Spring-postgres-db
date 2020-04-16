@@ -1,3 +1,4 @@
+import { GetPopularMovies } from "./../store/Action/movie-popular.action";
 import { AddMovieService } from "./shared/add-movie.service";
 import { Component, OnInit, Inject } from "@angular/core";
 import { Observable } from "rxjs";
@@ -10,6 +11,9 @@ import {
 } from "@angular/material/dialog";
 import { TokenStorageService } from "../shared/service/token-storage.service";
 import { MovieDetailsServiceService } from "../shared/service/movie-details-service.service";
+import { AppState } from "../store/Model/app-state.model";
+import { Store } from "@ngrx/store";
+import { Movie } from "../shared/model/Movie";
 
 @Component({
   selector: "app-movie-list",
@@ -20,6 +24,7 @@ export class MovieListComponent implements OnInit {
   title: string;
   movieList: Observable<any>;
   movieType = "top_rated";
+  movies: Observable<Movie[]>;
 
   constructor(
     private _router: Router,
@@ -27,16 +32,23 @@ export class MovieListComponent implements OnInit {
     private _route: ActivatedRoute,
     private _token: TokenStorageService,
     private _addMovieService: AddMovieService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public store: Store<AppState>
   ) {
     this.title = this._route.snapshot.data["title"];
     this.movieType = this._route.snapshot.data["movieTypes"];
   }
 
   ngOnInit(): void {
-    this._movieService.getMovies(this.movieType).subscribe((res) => {
-      this.movieList = res.results;
+    this.store.dispatch(new GetPopularMovies());
+    this.movies = this.store.select("movieslist");
+    this.store.select("movieslist").subscribe((res) => {
+      console.log("Empty Arrays:  ", res);
     });
+    console.log(this.movies);
+    /*  this._movieService.getMovies(this.movieType).subscribe((res) => {
+      this.movieList = res.results;
+    });*/
   }
   naviagteToDetails(movie) {
     this._router.navigate(["/details", movie.id]);

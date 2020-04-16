@@ -1,8 +1,8 @@
 import { Action } from "@ngrx/store";
 import { MovieFavService } from "../service/movie-fav.service";
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType, Effect } from "@ngrx/effects";
-import { EMPTY, of, Observable } from "rxjs";
+import { Actions, ofType, Effect } from "@ngrx/effects";
+import { of, Observable } from "rxjs";
 import { map, mergeMap, catchError } from "rxjs/operators";
 import * as FavMoviesAction from "./fav-movie.action";
 
@@ -13,7 +13,7 @@ import * as FavMoviesAction from "./fav-movie.action";
  *
  */
 @Injectable({ providedIn: "root" })
-export class MovieEffects {
+export class MovieFavEffects {
   constructor(
     private actions$: Actions,
     private movieFavService: MovieFavService

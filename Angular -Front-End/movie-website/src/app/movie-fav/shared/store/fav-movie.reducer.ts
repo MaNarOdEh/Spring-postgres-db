@@ -3,8 +3,8 @@ import * as FavMoviesAction from "./fav-movie.action";
 /**
  * this class will createReducer that will deal with add,remove,get fav movies
  */
-export interface MovieState {
-  movie: String[];
+export interface FavMovieState {
+  movies: String[];
   loading: boolean;
   loaded: boolean;
   error: string;
@@ -12,7 +12,7 @@ export interface MovieState {
 export function reducer(
   state = movieFavInitialState,
   action: FavMoviesAction.action
-): MovieState {
+): FavMovieState {
   switch (action.type) {
     case FavMoviesAction.MovieFavTypes.LOAD_FAV_MOVIES: {
       return {
@@ -25,13 +25,13 @@ export function reducer(
         ...state,
         loading: false,
         loaded: true,
-        movie: action.payload,
+        movies: action.payload,
       };
     }
     case FavMoviesAction.MovieFavTypes.LOAD_FAV_MOVIES_FAIL: {
       return {
         ...state,
-        movie: [],
+        movies: [],
         loading: false,
         loaded: false,
         error: action.payload,
@@ -43,9 +43,12 @@ export function reducer(
     }
   }
 }
-export const movieFavInitialState: MovieState = {
-  movie: [],
+export const movieFavInitialState: FavMovieState = {
+  movies: [],
   loading: false,
   loaded: false,
   error: "",
 };
+export interface FavMovieSt {
+  movies: FavMovieState;
+}

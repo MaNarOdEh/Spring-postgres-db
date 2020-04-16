@@ -5,8 +5,6 @@ import { Action } from "@ngrx/store";
  * get movie
  */
 export enum MovieFavTypes {
-  add = "ADD_FAV_MOVIE",
-  remove = "REMOVE_FAV_MOVIE",
   LOAD_FAV_MOVIES = "[Movie Favourite API] LoadFavMovie",
   LOAD_FAV_MOVIES_FAIL = "[Movie Favourite API] LoadFavMovieFail",
   LOAD_FAV_MOVIES_SUCCESS = "[Movie Favourite API] LoadFavMovieSuccess",
