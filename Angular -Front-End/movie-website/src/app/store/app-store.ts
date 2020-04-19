@@ -3,12 +3,17 @@ import { MovieEffects } from "./Effect/movie-popular.effects";
 import * as fromLoginReducer from "./Reducer/login.reducer";
 import { ActionReducerMap } from "@ngrx/store";
 import * as fromMovieFavReducer from "../movie-fav/shared/store/fav-movie.reducer";
-import { moviePopularReducer } from "./Reducer/movie-popular.reducer";
+import * as fromMovieReducer from "./Reducer/movie-popular.reducer";
+import { DeleteMovieFavEffects } from "../movie-fav/shared/store/fav-movie-remove.effects";
 
 export const reducers: ActionReducerMap<any> = {
   login: fromLoginReducer.reducer,
   favMovie: fromMovieFavReducer.reducer,
-  movieslist: moviePopularReducer,
+  movieslist: fromMovieReducer.moviePopularReducer,
 };
 
-export const effects: Array<any> = [MovieEffects, MovieFavEffects];
+export const effects: Array<any> = [
+  MovieEffects,
+  MovieFavEffects,
+  DeleteMovieFavEffects,
+];

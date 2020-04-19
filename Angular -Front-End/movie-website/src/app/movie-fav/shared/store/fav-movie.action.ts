@@ -4,21 +4,42 @@ import { Action } from "@ngrx/store";
  * one for adding movie,deleting movie
  * get movie
  */
-export enum MovieFavTypes {
+export enum EMovieFavTypes {
   LOAD_FAV_MOVIES = "[Movie Favourite API] LoadFavMovie",
   LOAD_FAV_MOVIES_FAIL = "[Movie Favourite API] LoadFavMovieFail",
   LOAD_FAV_MOVIES_SUCCESS = "[Movie Favourite API] LoadFavMovieSuccess",
+  REMOVE_FAV_MOVIES = "[Movie Favourite API] RemoveFavMovie",
+  REMOVE_FAV_MOVIE_FAIL = "[Movie Favourite API] RemoveFavMovieFail",
+  REMOVE_FAV_MOVIE_SUCCESS = "[Movie Favourite API] RemoveFavMovieSuccess",
 }
 
 export class LoadFavMovies implements Action {
-  readonly type = MovieFavTypes.LOAD_FAV_MOVIES;
+  readonly type = EMovieFavTypes.LOAD_FAV_MOVIES;
 }
 export class LoadFavMovieSuccess implements Action {
-  readonly type = MovieFavTypes.LOAD_FAV_MOVIES_SUCCESS;
+  readonly type = EMovieFavTypes.LOAD_FAV_MOVIES_SUCCESS;
   public constructor(public payload: string[]) {}
 }
 export class LoadFavMovieFail implements Action {
-  readonly type = MovieFavTypes.LOAD_FAV_MOVIES_FAIL;
+  readonly type = EMovieFavTypes.LOAD_FAV_MOVIES_FAIL;
   public constructor(public payload: string) {}
 }
-export type action = LoadFavMovies | LoadFavMovieSuccess | LoadFavMovieFail;
+export class RemoveFavMovie implements Action {
+  readonly type = EMovieFavTypes.REMOVE_FAV_MOVIES;
+  public constructor(public payload: string) {}
+}
+export class RemoveFavMovieFail implements Action {
+  readonly type = EMovieFavTypes.REMOVE_FAV_MOVIE_FAIL;
+  public constructor(public payload: string) {}
+}
+export class RemoveFavMovieSuccess implements Action {
+  readonly type = EMovieFavTypes.REMOVE_FAV_MOVIE_SUCCESS;
+  public constructor(public payload: string) {}
+}
+export type action =
+  | LoadFavMovies
+  | LoadFavMovieSuccess
+  | LoadFavMovieFail
+  | RemoveFavMovie
+  | RemoveFavMovieFail
+  | RemoveFavMovieSuccess;

@@ -22,10 +22,10 @@ import { Movie } from "../shared/model/Movie";
 })
 export class MovieListComponent implements OnInit {
   title: string;
-  movieList: Observable<any>;
+
   movieType = "top_rated";
   movies: Observable<Movie[]>;
-
+  movieList: any;
   constructor(
     private _router: Router,
     private _movieService: ReadMovieService,
@@ -37,18 +37,22 @@ export class MovieListComponent implements OnInit {
   ) {
     this.title = this._route.snapshot.data["title"];
     this.movieType = this._route.snapshot.data["movieTypes"];
+    console.log("before dispatch loading movies");
+    this.store.dispatch(new GetPopularMovies(this.movieType));
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new GetPopularMovies());
-    this.movies = this.store.select("movieslist");
-    this.store.select("movieslist").subscribe((res) => {
-      console.log("Empty Arrays:  ", res);
-    });
-    console.log(this.movies);
-    /*  this._movieService.getMovies(this.movieType).subscribe((res) => {
-      this.movieList = res.results;
+    // this.store.dispatch(new GetPopularMovies(this.movieType));
+
+    //this.movies = this.store.select("movieslist");
+    /*this.store.select("movieslist").subscribe((res) => {
+      //  console.log("Empty Arrays:  ", res);
     });*/
+    //  this.movies = this.store.select("movieslist");
+    //  console.log(this.movies);
+    this._movieService.getMovies(this.movieType).subscribe((res) => {
+      this.movieList = res.results;
+    });
   }
   naviagteToDetails(movie) {
     this._router.navigate(["/details", movie.id]);

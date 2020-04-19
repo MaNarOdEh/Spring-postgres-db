@@ -14,13 +14,13 @@ export function reducer(
   action: FavMoviesAction.action
 ): FavMovieState {
   switch (action.type) {
-    case FavMoviesAction.MovieFavTypes.LOAD_FAV_MOVIES: {
+    case FavMoviesAction.EMovieFavTypes.LOAD_FAV_MOVIES: {
       return {
         ...state,
         loading: true,
       };
     }
-    case FavMoviesAction.MovieFavTypes.LOAD_FAV_MOVIES_SUCCESS: {
+    case FavMoviesAction.EMovieFavTypes.LOAD_FAV_MOVIES_SUCCESS: {
       return {
         ...state,
         loading: false,
@@ -28,7 +28,30 @@ export function reducer(
         movies: action.payload,
       };
     }
-    case FavMoviesAction.MovieFavTypes.LOAD_FAV_MOVIES_FAIL: {
+    case FavMoviesAction.EMovieFavTypes.LOAD_FAV_MOVIES_FAIL: {
+      return {
+        ...state,
+        movies: [],
+        loading: false,
+        loaded: false,
+        error: action.payload,
+      };
+    }
+    case FavMoviesAction.EMovieFavTypes.REMOVE_FAV_MOVIES: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case FavMoviesAction.EMovieFavTypes.REMOVE_FAV_MOVIE_SUCCESS: {
+      return {
+        movies: state.movies.filter((item) => item !== action.payload),
+        loading: true,
+        loaded: true,
+        error: "",
+      };
+    }
+    case FavMoviesAction.EMovieFavTypes.LOAD_FAV_MOVIES_FAIL: {
       return {
         ...state,
         movies: [],

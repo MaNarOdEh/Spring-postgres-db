@@ -7,8 +7,6 @@ import { ReadMovieService } from "src/app/movie-list/shared/read-movie.service";
 import * as PopularMoviesAction from "./../Action/movie-popular.action";
 
 /*
- * FavMovie (add[movieId,userName],delete[movieId,userName],get[username])
- * get ==> it will return all moviesid list of string
  *
  *
  */
@@ -19,18 +17,33 @@ export class MovieEffects {
     private actions$: Actions,
     private movieService: ReadMovieService
   ) {}
-  @Effect()
+  /* @Effect()
   loadPopularMovies$: Observable<Action> = this.actions$.pipe(
     ofType<PopularMoviesAction.GetPopularMovies>(
       PopularMoviesAction.EPopularMovieActions.LOAD_POPULAR_MOVIE
     ),
     mergeMap((actions: PopularMoviesAction.GetPopularMovies) =>
-      this.movieService.getMovies("popular").pipe(
+      this.movieService.getMovies(actions.payload).pipe(
         map(
           (movie) => new PopularMoviesAction.LoadPopularMoviesSuccuess(movie)
         ),
         catchError((error) =>
           of(new PopularMoviesAction.LoadPopularMoviesFail(error))
+        )
+      )
+    )
+  );*/
+
+  loadMovies$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PopularMoviesAction.EPopularMovieActions.LOAD_POPULAR_MOVIE),
+      mergeMap(() =>
+        this.movieService.getMovies("top_rated").pipe(
+          map(
+            (movies) =>
+              new PopularMoviesAction.LoadPopularMoviesSuccuess(movies),
+            catchError(() => EMPTY)
+          )
         )
       )
     )

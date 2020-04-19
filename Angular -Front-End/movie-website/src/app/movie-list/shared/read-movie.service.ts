@@ -12,7 +12,6 @@ export class ReadMovieService {
     this.movieDB = MovieDB.getMovieDB();
   }
   public getMovies(movieType: string): Observable<any> {
-    console.log("hey!! from getMovies Methods!!");
     return this.http.get(
       `${this.movieDB.getBASEURL()}movie/${movieType}?api_key=${this.movieDB.getAPIKEY()}`
     );

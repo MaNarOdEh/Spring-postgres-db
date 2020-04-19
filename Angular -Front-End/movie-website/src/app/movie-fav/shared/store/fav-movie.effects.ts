@@ -24,7 +24,7 @@ export class MovieFavEffects {
   @Effect()
   loadFavMovies$: Observable<Action> = this.actions$.pipe(
     ofType<FavMoviesAction.LoadFavMovies>(
-      FavMoviesAction.MovieFavTypes.LOAD_FAV_MOVIES
+      FavMoviesAction.EMovieFavTypes.LOAD_FAV_MOVIES
     ),
     mergeMap((actions: FavMoviesAction.LoadFavMovies) =>
       this.movieFavService.getFavMovie().pipe(

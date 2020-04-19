@@ -12,7 +12,7 @@ export enum EPopularMovieActions {
 }*/
 export class GetPopularMovies implements Action {
   public readonly type = EPopularMovieActions.GET_POPULAR_MOVIE;
-  public constructor() {}
+  public constructor(public payload: string) {}
 }
 
 export class LoadPopularMoviesFail implements Action {
