@@ -1,6 +1,4 @@
-import { FavMovieState, FavMovieSt } from "./shared/store/fav-movie.reducer";
-import { Observable } from "rxjs";
-import { DeleteMovieService } from "./../shared/service/delete-movie.service";
+import { FavMovieSt } from "./shared/store/fav-movie.reducer";
 import { MovieDetailsServiceService } from "./../shared/service/movie-details-service.service";
 import { Component, OnInit } from "@angular/core";
 import { Movie } from "../shared/model/Movie";
@@ -10,7 +8,6 @@ import { first } from "rxjs/operators";
 import { LoginState } from "../store/Reducer/login.reducer";
 
 import * as FavMoviesAction from "./shared/store/fav-movie.action";
-import * as FavMovieSelector from "./shared/store/fav-movie.selector";
 
 @Component({
   selector: "app-movie-fav",

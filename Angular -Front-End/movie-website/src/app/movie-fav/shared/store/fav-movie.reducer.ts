@@ -60,6 +60,19 @@ export function reducer(
         error: action.payload,
       };
     }
+    case FavMoviesAction.EMovieFavTypes.ADD_FAV_MOVIE: {
+      return { ...state };
+    }
+    case FavMoviesAction.EMovieFavTypes.ADD_FAV_MOVIE_FAIL: {
+      return { ...state, error: action.payload };
+    }
+    case FavMoviesAction.EMovieFavTypes.ADD_FAV_MOVIE_SUCCESS: {
+      return {
+        ...state,
+        movies: [...state.movies, action.payload],
+        error: "",
+      };
+    }
 
     default: {
       return movieFavInitialState;

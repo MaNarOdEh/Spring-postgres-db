@@ -4,16 +4,13 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { Observable } from "rxjs";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ReadMovieService } from "./shared/read-movie.service";
-import {
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-  MatDialog,
-} from "@angular/material/dialog";
+import { MatDialog } from "@angular/material/dialog";
 import { TokenStorageService } from "../shared/service/token-storage.service";
-import { MovieDetailsServiceService } from "../shared/service/movie-details-service.service";
 import { AppState } from "../store/Model/app-state.model";
 import { Store } from "@ngrx/store";
 import { Movie } from "../shared/model/Movie";
+import { FavMovieSt } from "../movie-fav/shared/store/fav-movie.reducer";
+import * as FavMoviesAction from "../movie-fav/shared/store/fav-movie.action";
 
 @Component({
   selector: "app-movie-list",
@@ -33,7 +30,8 @@ export class MovieListComponent implements OnInit {
     private _token: TokenStorageService,
     private _addMovieService: AddMovieService,
     public dialog: MatDialog,
-    public store: Store<AppState>
+    public store: Store<AppState>,
+    private _movieStore: Store<FavMovieSt>
   ) {
     this.title = this._route.snapshot.data["title"];
     this.movieType = this._route.snapshot.data["movieTypes"];
@@ -61,7 +59,9 @@ export class MovieListComponent implements OnInit {
     if (this._token.getUser() == null) {
       window.alert("you should log in first!");
     } else {
-      this._addMovieService.addMovie(movie.id).subscribe();
+      this._movieStore.dispatch(
+        new FavMoviesAction.AddFavMovie(movie.id.toString())
+      );
     }
   }
 }
